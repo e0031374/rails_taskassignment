@@ -5,6 +5,12 @@
     })
 end
 
+3.times do
+    Label.create({
+        l_name: Faker::Books::Lovecraft.location
+    })
+end
+
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
