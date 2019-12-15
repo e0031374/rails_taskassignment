@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         namespace 'v1' do
             resources :tasks
             resources :labels
+            resources :tasklabels
         end
     end
 end
