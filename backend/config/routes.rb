@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
     namespace 'api' do
         namespace 'v1' do
-            resources :tasks
+            resources :tasks do
+                member do
+                    get 'labels'
+                end
+            end
             resources :labels
             resources :tasklabels
         end

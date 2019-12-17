@@ -38,6 +38,15 @@ module Api      # create namespace
                         data: @task.errors}, status: :unprocessable_entity
                 end
             end
+
+            def labels
+                @task = Task.find(params[:id])
+                # all users
+                @tasklabels = TaskLabel.where(task_id: @task.id)
+                @labels = @tasklabels.map { |x| Label.find(x.label_id) }
+                render json: {status: 'SUCCESS', message:'Retrieved task label associations', 
+                    data: { association: @tasklabels, labels: @labels }}, status: :ok
+            end
             
             private
             def task_params
