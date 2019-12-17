@@ -1,15 +1,17 @@
 module Api      # create namespace
     module V1   # note: uppercase V
         class TasklabelsController < ApplicationController
-            #def index
-            #    # query db for all tasklabels by date
-            #    @tasklabels = TaskLabel.order('l_name ASC');
-            #    render json: {status: 'SUCCESS', message:'Retrieved tasklabels', data: @tasklabels}, status: :ok
-            #end
+            def index
+                # query db for all tasklabels by date
+                @tasklabels = TaskLabel.all() #.order('l_name ASC');
+                render json: {status: 'SUCCESS', message:'Retrieved TaskLabel relationships', 
+                    data: @tasklabels}, status: :ok
+            end
 
             def show    # note, if TaskLabel note found { status: 404, error: "Not Found", ...rest } reply
                 @tasklabel = TaskLabel.find(params[:id])
-                render json: {status: 'SUCCESS', message:'Retrieved tasklabel', data: @tasklabel}, status: :ok
+                render json: {status: 'SUCCESS', message:'Retrieved TaskLabel relationship', 
+                    data: @tasklabel}, status: :ok
             end
 
             def create  # on duplicate: { status: "ERROR", ... }
@@ -24,11 +26,12 @@ module Api      # create namespace
                 end
             end
 
-            #def destroy         # for DELETE request
-            #    @tasklabel = TaskLabel.find(params[:id])
-            #    @tasklabel.destroy
-            #    render json: {status: 'SUCCESS', message:'Deleted tasklabel', data: @tasklabel},status: :ok
-            #end
+            def destroy         # for DELETE request
+                @tasklabel = TaskLabel.find(params[:id])
+                @tasklabel.destroy
+                render json: {status: 'SUCCESS', message:'Deleted TaskLabel relationship', 
+                    data: @tasklabel},status: :ok
+            end
 
             ## note, if the json to update does not contain "l_name" params, it will still
             ## return a success but nothing will change in the table
