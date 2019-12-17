@@ -12,10 +12,18 @@ module Api      # create namespace
                 render json: {status: 'SUCCESS', message:'Retrieved label', data: @label}, status: :ok
             end
 
-            def create  # on duplicate: { status: "ERROR", ... }
+            # Duplicate label entries will return with: { status: "ERROR", ... }
+            def create
                 @label = Label.new(label_params)
 
-                if @label.save
+                # client should not be able to enter a duplicate label
+                labelExists = Label.exists?(label_params)
+
+                if labelExists
+                    # duplicate labels
+                    render json: {status: 'ERROR', message:'Label name already in use',
+                        data: @label.errors}, status: :unprocessable_entity
+                elsif @label.save
                     render json: {status: 'SUCCESS', message:'Saved label', data: @label},status: :ok
                 else
                     render json: {status: 'ERROR', message:'Label not saved',
