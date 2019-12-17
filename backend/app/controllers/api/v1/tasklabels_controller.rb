@@ -17,12 +17,29 @@ module Api      # create namespace
             def create  # on duplicate: { status: "ERROR", ... }
                 @tasklabel = TaskLabel.new(tasklabel_params)
 
-                if @tasklabel.save
+                # client should not be able to enter an association between
+                # between a task that doesnt exist and label that doesnt exist
+                taskExists = Task.exists?(tasklabel_params[:task_id])
+                labelExists = Label.exists?(tasklabel_params[:label_id])
+
+                ## no duplicate Task-Label relationships
+                relationshipDoesNotExists = ! TaskLabel.exists?(tasklabel_params)
+                 
+                errorData = { taskExists: taskExists, labelExists: labelExists, 
+                    relationshipDoesNotExists: relationshipDoesNotExists }
+
+                if ! taskExists or ! labelExists
+                    render json: {status: 'ERROR', message:'Specified Task or Label could not be found',
+                        data: errorData}, status: :unprocessable_entity
+                elsif ! relationshipDoesNotExists
+                    render json: {status: 'ERROR', message:'Specified TaskLabel relationship already exists',
+                        data: errorData}, status: :unprocessable_entity
+                elsif @tasklabel.save
                     render json: {status: 'SUCCESS', message:'Saved TaskLabel relationship', 
                         data: @tasklabel},status: :ok
                 else
                     render json: {status: 'ERROR', message:'TaskLabel relationship not saved',
-                        data: @tasklabel.errors}, status: :unprocessable_entity
+                        data: @tasklabel.errors, errorData: errorData}, status: :unprocessable_entity
                 end
             end
 
@@ -33,10 +50,10 @@ module Api      # create namespace
                     data: @tasklabel},status: :ok
             end
 
-            ## note, if the json to update does not contain "l_name" params, it will still
-            ## return a success but nothing will change in the table
-            ## ive decided to keep it simple and just allow for this to go through rather
-            ## than do server side validation, at front end, check the data returned
+            # note, if the json to update does not contain "l_name" params, it will still
+            # return a success but nothing will change in the table
+            # ive decided to keep it simple and just allow for this to go through rather
+            # than do server side validation, at front end, check the data returned
             #def update          # for PUT request, ret: 404 on not found, 
             #    @tasklabel = TaskLabel.find(params[:id])
             #    if @tasklabel.update_attributes(tasklabel_params)
