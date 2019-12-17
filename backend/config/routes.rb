@@ -8,7 +8,11 @@ Rails.application.routes.draw do
                     get 'labels'
                 end
             end
-            resources :labels
+            resources :labels do
+                member do
+                    get 'tasks'
+                end
+            end
             resources :tasklabels
         end
     end

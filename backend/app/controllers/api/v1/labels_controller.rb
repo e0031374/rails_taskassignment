@@ -42,6 +42,16 @@ module Api      # create namespace
                         data: @label.errors}, status: :unprocessable_entity
                 end
             end
+
+            # gets tasks labeled with provided label?
+            def tasks 
+                @label = Label.find(params[:id])
+                # get list of Task-Label associations with the provided label
+                @tasklabels = TaskLabel.where(label_id: @label.id)
+                @tasks = @tasklabels.map { |x| Task.find(x.task_id) }
+                render json: {status: 'SUCCESS', message:'Retrieved task label associations', 
+                    data: { relationship: @tasklabels, entity: @tasks }}, status: :ok
+            end
             
             private
             def label_params

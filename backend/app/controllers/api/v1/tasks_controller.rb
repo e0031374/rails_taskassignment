@@ -39,13 +39,14 @@ module Api      # create namespace
                 end
             end
 
+            # task -> all labels belonging to task
             def labels
                 @task = Task.find(params[:id])
                 # all users
                 @tasklabels = TaskLabel.where(task_id: @task.id)
                 @labels = @tasklabels.map { |x| Label.find(x.label_id) }
                 render json: {status: 'SUCCESS', message:'Retrieved task label associations', 
-                    data: { association: @tasklabels, labels: @labels }}, status: :ok
+                    data: { relationship: @tasklabels, entity: @labels }}, status: :ok
             end
             
             private
