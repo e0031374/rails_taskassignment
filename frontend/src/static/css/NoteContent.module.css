@@ -1,0 +1,24 @@
+.allLabelContainer {
+    position: relative;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.labelContainer {
+    padding: 1px;
+}
+
+.card {
+    min-width: 275;
+    max-width: 300;
+    padding: 5;
+
+}
+
+.titleBar {
+    display: flex;
+}
+
+.bin {
+    flex: 1;   
+}
