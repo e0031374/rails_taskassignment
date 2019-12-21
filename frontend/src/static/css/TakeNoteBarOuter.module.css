@@ -1,0 +1,10 @@
+.container {
+    padding: 5px;
+    margin: auto;
+    width: 70%;
+    max-width: 700px;
+    min-width: 360px;
+}
+
+.subContainer {
+}

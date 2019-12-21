@@ -1,0 +1,11 @@
+
+.allLabelContainer {
+    position: relative;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container {
+    background-color: #ff6699;
+}

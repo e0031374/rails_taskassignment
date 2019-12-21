@@ -21,6 +21,7 @@
 .mainContainer {
     display:flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .noteContainer {
     padding: 8px;

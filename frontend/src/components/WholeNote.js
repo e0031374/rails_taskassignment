@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
-    Modal,
-} from '@material-ui/core';
 
 import NoteContent from './NoteContent';
+import useNoteFormWrapper from './useNoteFormWrapper';
 import NoteForm from './NoteForm';
+
+//const WholeNote = (props) => useNoteFormWrapper(NoteContent);
 
 
 const WholeNote = (props) => {

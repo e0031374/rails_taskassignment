@@ -7,6 +7,7 @@ import {
     List,
     ListItem,
     Paper,
+    TextareaAutosize,
     TextField,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NoteForm = (props) => {
-    const { title, body, tags } = props;
+    const { title, body, tags=[] } = props;
     const { open, onClose} = props;
     const someValue = undefined; //TODO
     const classes = useStyles();
