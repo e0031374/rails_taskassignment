@@ -8,12 +8,13 @@ import { NoteAdd } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
     search: {
-        border: "1px solid red",
+        height: "100%",
+        width: "100%",
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
+        backgroundColor: fade(theme.palette.common.white, 0.25),
         '&:hover': {
-          backgroundColor: fade(theme.palette.common.white, 0.25),
+          backgroundColor: fade(theme.palette.common.white, 0.35),
         },
         marginRight: theme.spacing(2),
         marginLeft: 0,

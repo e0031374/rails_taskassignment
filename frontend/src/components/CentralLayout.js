@@ -1,29 +1,23 @@
 import React from 'react';
+
+import {BASE_COLOUR} from '../static/colorConstants';
 import styles from '../static/css/CentralLayout.module.css';
-import { 
-    Grid,
-    GridList,
-    GridListTile,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+
 import NoteLayout from './NoteLayout';
 import TakeNoteBarOuter from './TakeNoteBarOuter';
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        direction: "column",
-    },
-}));
 
 const CentralLayout = (props) => {
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={backgroundColorStyle}>
             <TakeNoteBarOuter />
-            <NoteLayout />
+            <NoteLayout {...props} />
         </div>
     );
+}
+
+const backgroundColorStyle = {
+    backgroundColor: BASE_COLOUR,
 }
 
 export default CentralLayout;

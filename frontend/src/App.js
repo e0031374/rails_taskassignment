@@ -1,14 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MainLayout from './components/MainLayout';
+import StageOne from './components/StageOne';
 
 
 
 function App() {
   return (
-    <div>
-        <MainLayout />
+    <div >
+        <StageOne />
     </div>
   );
 }
