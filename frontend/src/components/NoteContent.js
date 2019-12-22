@@ -15,6 +15,8 @@ import LabelChip from './LabelChip';
 
 
 const useStyles = makeStyles({
+    actionArea: {
+    },
     card: {
         minWidth: 200,
         maxWidth: 250,
@@ -41,31 +43,33 @@ const useStyles = makeStyles({
 
 const NoteContent = (props) => {
     const classes = useStyles();
-    const { tags, title, body } = props;
+    const { setFilterKey, tags, title, body } = props;
     return (
         <Card className={classes.card}>
-            <CardActionArea onClick={props.onClick}>
             <CardContent className={classes.content}>
                 <div className={styles.titleBar}>
-                    <Typography className={classes.title} variant="h6" color="textSecondary">
-                        {title}
-                    </Typography>
+                    <CardActionArea className={classes.actionArea} onClick={props.onClick}>
+                        <Typography className={classes.title} variant="h6" color="textSecondary">
+                            {title}
+                        </Typography>
+                    </CardActionArea>
                     <IconButton className={classes.bin} aria-lael="delete">
                         <DeleteIcon />
                     </IconButton>
                 </div>
+            <CardActionArea className={classes.actionArea} onClick={props.onClick}>
                 <Typography className={classes.body} variant="body2" component="p">
                     {body}
                 </Typography>
+            </CardActionArea>
             </CardContent>
             <div className={styles.allLabelContainer}>
                 { tags.map( tag => 
                 <div className={styles.labelContainer}>
-                    <LabelChip label={tag}/>
+                    <LabelChip label={tag} onClick={() => setFilterKey(tag)}/>
                 </div>
                 )}
             </div>
-            </CardActionArea>
         </Card>
     );
 }

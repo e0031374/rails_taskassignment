@@ -45,9 +45,9 @@ const useStyles = makeStyles( theme => ({
 const LabelDrawer = ({
     handleDrawerClose, 
     labels=[], 
-    onClick, 
     open, 
-    reset
+    reset,
+    setFilterKey,
 }) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -70,7 +70,7 @@ const LabelDrawer = ({
             <LabelDrawerItem 
                 icon={LightBulbIcon} 
                 text="Notes" 
-                onClick={reset}
+                onClick={() => setFilterKey(false)}
             />
         <Divider/>
         <List>
@@ -78,7 +78,7 @@ const LabelDrawer = ({
                 <LabelDrawerItem 
                     icon={LabelIcon} 
                     text={label} 
-                    onClick={onClick(label)}
+                    onClick={() => setFilterKey(label)}
                 />
             )}
         </List>

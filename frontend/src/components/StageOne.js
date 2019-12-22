@@ -70,6 +70,18 @@ const noteList = [
         body: "Red Keep",
         tags: ["Targeryon", "iron throne", "baratheon"],
     },
+    {
+        id:7,
+        title: "He Who Walks In The Shadow Of Darkness",
+        body: "Rising Sun",
+        tags: ["Kingsport", "lannisport", "baratheon"],
+    },
+    {
+        id:8,
+        title: "",
+        body: "Hes king in da norf",
+        tags: ["Targeryon", "Lannisport", "Da norf"],
+    },
     dummy,
 ];
 
@@ -77,12 +89,24 @@ const labels = ["Kingsport", "Lannisport", "Innsmouth", "Da Norf", "Sean Bean"];
 const hof = (targetLabel) => () => console.log("hof");
 const reset = () => console.log("reset");
 
+
 const StageOne = (props) => {
     const [open, setOpen] = React.useState(true);
+    const [applyFilter, setFilter] = React.useState(false);
+    const [filterKey, setFilterKey] = React.useState("");
+    const notes = noteList;
 
     const handleDrawerOpen = () => { setOpen(true); };
     const handleDrawerClose = () => { setOpen(false); };
     const classes = useStyles();
+
+    const filterPred = (note) => {
+        if (filterKey) {
+            return note.tags.map(word => word.toLowerCase())
+                    .includes(filterKey.toLowerCase());
+        }
+        return true;
+    }
 
     return (
         <div className={classes.container}>
@@ -95,10 +119,11 @@ const StageOne = (props) => {
                 className={classes.mainLayout}
                 labels={labels}
                 handleDrawerClose={handleDrawerClose}
-                notes={noteList}
+                notes={notes.filter(filterPred)}
                 onClick={hof}
                 open={open}
                 reset={reset}
+                setFilterKey={setFilterKey}
             />
         </div>
     );

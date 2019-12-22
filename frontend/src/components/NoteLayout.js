@@ -13,13 +13,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // make three to four columns
-const NoteLayout = ({ notes }) => {
+const NoteLayout = ({ notes, ...rest }) => {
     const classes = useStyles();
     return (
         <div className={styles.mainContainer}>
             { notes.map(note => 
                 <div className={styles.noteContainer}>
-                    <WholeNote key={note.id} noteContent={note} />
+                    <WholeNote 
+                        key={note.id} 
+                        noteContent={note} 
+                        {...rest}
+                    />
                 </div>
             
             )}

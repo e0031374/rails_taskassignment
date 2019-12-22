@@ -7,6 +7,9 @@
 .labelContainer {
     padding: 1px;
 }
+.iconContainer {
+    flex: 1;
+}
 
 .card {
     min-width: 275;

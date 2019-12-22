@@ -46,18 +46,25 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const MainLayout = ({ open, notes, ...rest}) => {
+const MainLayout = ({ open, notes, setFilterKey, ...rest}) => {
     const classes = useStyles();
     return (
         <div className={styles.all} style={backgroundColorStyle}>
-            <LabelDrawer open={open} {...rest}/>
+            <LabelDrawer 
+                open={open} 
+                setFilterKey={setFilterKey}
+                {...rest}
+            />
             <div className={styles.split}/>
             <main 
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
                 })}
             >
-                <CentralLayout notes={notes}/>
+                <CentralLayout 
+                    notes={notes}
+                    setFilterKey={setFilterKey}
+                />
             </main>
         </div>
     );

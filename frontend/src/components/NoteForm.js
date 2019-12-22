@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NoteForm = (props) => {
-    const { title, body, tags=[] } = props;
+    const { body, tags=[], title, setFilterKey } = props;
     const { open, onClose} = props;
     const someValue = undefined; //TODO
     const classes = useStyles();
@@ -73,7 +73,10 @@ const NoteForm = (props) => {
                         <div className={styles.allLabelContainer}>
                             { tags.map( tag => 
                                 <div className={styles.labelContainer}>
-                                    <LabelChip label={tag}/>
+                                    <LabelChip 
+                                        label={tag}
+                                        onClick={() => setFilterKey(tag)}
+                                    />
                                 </div>
                             )}
                         </div>

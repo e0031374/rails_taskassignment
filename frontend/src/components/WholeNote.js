@@ -8,7 +8,7 @@ import NoteForm from './NoteForm';
 
 
 const WholeNote = (props) => {
-    const {noteContent} = props;
+    const {noteContent, setFilterKey} = props;
 
     const [open, setOpen] = React.useState(false);
 
@@ -17,8 +17,17 @@ const WholeNote = (props) => {
 
     return (
         <div>
-            <NoteContent onClick={handleOpen} {...noteContent}/>
-            <NoteForm open={open} onClose={handleClose} {...noteContent}/>
+            <NoteContent 
+                onClick={handleOpen} 
+                setFilterKey={setFilterKey} 
+                {...noteContent}
+            />
+            <NoteForm 
+                onClose={handleClose} 
+                open={open} 
+                setFilterKey={setFilterKey} 
+                {...noteContent}
+            />
         </div>
     );
 }
