@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import styles from '../static/css/CentralLayout.module.css';
 import { BASE_COLOUR }  from '../static/colorConstants';
+import { LabelContext } from '../utils/context.js'
 
 import MainLayout from './MainLayout';
 import Header from './Header';
@@ -106,6 +107,7 @@ const StageOne = (props) => {
     const [labels, setLabel] = React.useState(labelList);
     const [notes, setNotes] = React.useState(noteList);
 
+
     React.useEffect(() => {
         // fetch
         console.log("use effect");
@@ -130,14 +132,16 @@ const StageOne = (props) => {
                 handleDrawerOpen={handleDrawerOpen}
                 open={open}
             />
-            <MainLayout 
-                className={classes.mainLayout}
-                handleDrawerClose={handleDrawerClose}
-                labels={labels}
-                notes={notes.filter(filterPred)}
-                open={open}
-                setFilterKey={setFilterKey}
-            />
+            <LabelContext.Provider value={labels}>
+                <MainLayout 
+                    className={classes.mainLayout}
+                    handleDrawerClose={handleDrawerClose}
+                    labels={labels}
+                    notes={notes.filter(filterPred)}
+                    open={open}
+                    setFilterKey={setFilterKey}
+                />
+            </LabelContext.Provider>
         </div>
     );
 }
