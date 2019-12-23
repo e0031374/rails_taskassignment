@@ -14,6 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/MenuOpen';
 import styles from '../static/css/NoteContent.module.css';
 import { TRIM_COLOUR } from '../static/colorConstants';
 import LabelDrawerItem from './LabelDrawerItem.js';
+import EditLabelContainer from './EditLabelContainer.js';
 //import { 
 //    Label:LabelIcon, 
 //    EmojiObjects:LightBulbIcon, 
@@ -82,6 +83,10 @@ const LabelDrawer = ({
                 />
             )}
         </List>
+        <Divider/>
+            <EditLabelContainer
+                labels={labels}
+            />
         </Drawer>
     );
 }

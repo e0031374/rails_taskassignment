@@ -85,16 +85,31 @@ const noteList = [
     dummy,
 ];
 
-const labels = ["Kingsport", "Lannisport", "Innsmouth", "Da Norf", "Sean Bean"];
-const hof = (targetLabel) => () => console.log("hof");
-const reset = () => console.log("reset");
+const labelList = ["Kingsport", "Lannisport", "Innsmouth", "Da Norf", "Sean Bean"];
 
+// TODO utils folder with some functions inside
+const sync = () => {
+    // fetch api here
+    return {
+        labels: [],
+        notes: [],
+    };
+};
+
+// TODO change label portion to note card => form of labels currently selected and new labels
+// TODO delete/edit label portion to the drawer
 
 const StageOne = (props) => {
     const [open, setOpen] = React.useState(true);
-    const [applyFilter, setFilter] = React.useState(false);
     const [filterKey, setFilterKey] = React.useState("");
-    const notes = noteList;
+
+    const [labels, setLabel] = React.useState(labelList);
+    const [notes, setNotes] = React.useState(noteList);
+
+    React.useEffect(() => {
+        // fetch
+        console.log("use effect");
+    });
 
     const handleDrawerOpen = () => { setOpen(true); };
     const handleDrawerClose = () => { setOpen(false); };
@@ -117,12 +132,10 @@ const StageOne = (props) => {
             />
             <MainLayout 
                 className={classes.mainLayout}
-                labels={labels}
                 handleDrawerClose={handleDrawerClose}
+                labels={labels}
                 notes={notes.filter(filterPred)}
-                onClick={hof}
                 open={open}
-                reset={reset}
                 setFilterKey={setFilterKey}
             />
         </div>
