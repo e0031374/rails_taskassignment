@@ -161,6 +161,9 @@ const StageOne = (props) => {
 
     React.useEffect(() => {
         // fetch for the first time, like componentDidMount
+        fetch('/api/v1/tasks')
+            .then(response => response.json())
+            .then(data => console.log(data));
         console.log("use effect");
         console.log();
     });
