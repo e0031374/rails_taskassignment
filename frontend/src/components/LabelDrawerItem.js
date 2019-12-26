@@ -4,14 +4,18 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
+    Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { HIGHLIGHT_COLOUR } from '../static/colorConstants.js';
 
 const useStyles = makeStyles({
-    drawer: {
+    listitem: {
+        color: HIGHLIGHT_COLOUR,
+        fontWeight: "550",
     },
-    drawerPaper: {
-    }
+    icon: {
+    },
 });
 
 // 1. for AllNotes, just pass a regular reset() function
@@ -19,10 +23,23 @@ const useStyles = makeStyles({
 // onClick should be a higher order function, use text for the label text, and the function
 // when called should filter available notes
 
-const LabelDrawerItem = ({icon:Icon, text, onClick}) => 
-    <ListItem button onClick={onClick}>
-        <ListItemIcon><Icon/></ListItemIcon>
-        <ListItemText primary={text}/>
-    </ListItem>
+const LabelDrawerItem = ({icon:Icon, text, onClick}) => {
+
+    const classes = useStyles();
+    const primaryTypo = 
+        <Typography
+            className={classes.listitem}
+        >{text}</Typography>
+
+    return (
+        <ListItem button className={classes.icon} onClick={onClick}>
+            <ListItemIcon><Icon/></ListItemIcon>
+            <ListItemText 
+                disableTypography
+                primary={primaryTypo}
+            />
+        </ListItem>
+    );
+}
 
 export default LabelDrawerItem;

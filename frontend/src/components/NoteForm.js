@@ -11,8 +11,8 @@ import {
     TextField,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-
+import { DISPATCH_NOTES} from '../utils/type.js';
+import { DispatchContext } from '../utils/context.js'
 
 import LabelChip from './LabelChip';
 
@@ -29,21 +29,41 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const setOnChange = setFunction => e => {
+    setFunction(e.target.value);
+}
+
 const NoteForm = (props) => {
-    const { body, tags=[], title, setFilterKey } = props;
+    const dispatch = React.useContext(DispatchContext);
+    const { body, handleSubmit, tags=[], title, setFilterKey } = props;
     const { open, onClose} = props;
+
+    const [localTitle, setTitle] = React.useState(title);
+    const [localBody, setBody] = React.useState(body);
+
+    const onChangeTitle = setOnChange(setTitle);
+    const onChangeBody = setOnChange(setBody);
+
+    const handleClose = (e) => {
+        // this one goes to the parent
+        onClose(someValue);
+        const newNote = { title: localTitle, body: localBody };
+        handleSubmit(dispatch, newNote);
+        resetLocalState();
+        console.log("form submitted");
+    }
+
+    const resetLocalState = () => { 
+        setTitle(title); 
+        setBody(body); 
+    }
+
     const someValue = undefined; //TODO
     const classes = useStyles();
 
     const onSubmit = (e) => {
         e.preventDefault();
-        handleClose();
-    }
-
-    const handleClose = (e) => {
-        // this one goes to the parent
-        onClose(someValue);
-        console.log("form submitted");
+        handleClose(e);
     }
 
     return (
@@ -52,19 +72,25 @@ const NoteForm = (props) => {
                 <List>
                     <ListItem>
                         <TextField 
+                            fullWidth
+                            autoComplete='off'
                             className={classes.title} 
                             label="Title" 
                             name="title" 
+                            onChange={onChangeTitle}
+                            value={localTitle}
                             variant="filled"
-                            fullWidth
                         />
                     </ListItem>
                     <ListItem>
                         <TextField
+                            autoComplete='off'
                             className={classes.body} 
                             multiline={true}
                             label="Take a note..." 
                             name="body" 
+                            onChange={onChangeBody}
+                            value={localBody}
                             variant="outlined"
                             fullWidth
                         />

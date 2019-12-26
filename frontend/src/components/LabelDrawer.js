@@ -12,7 +12,7 @@ import LightBulbIcon from '@material-ui/icons/EmojiObjects';
 import ChevronLeftIcon from '@material-ui/icons/MenuOpen';
 
 import styles from '../static/css/NoteContent.module.css';
-import { TRIM_COLOUR } from '../static/colorConstants';
+import { TRIM_COLOUR, HIGHLIGHT_COLOUR } from '../static/colorConstants';
 import LabelDrawerItem from './LabelDrawerItem.js';
 import EditLabelContainer from './EditLabelContainer.js';
 //import { 
@@ -38,6 +38,14 @@ const useStyles = makeStyles( theme => ({
         padding: theme.spacing(0,1),
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
+    },
+    listitem: {
+        borderRadius: "25px",
+        border: "2px solid " + HIGHLIGHT_COLOUR,
+        padding: 2,
+        margin: 5,
+        height: 35,
+        display: "flex",
     },
 }));
 
@@ -76,11 +84,13 @@ const LabelDrawer = ({
         <Divider/>
         <List>
             {labels.map(label => 
-                <LabelDrawerItem 
-                    icon={LabelIcon} 
-                    text={label} 
-                    onClick={() => setFilterKey(label)}
-                />
+                <div className={classes.listitem} >
+                    <LabelDrawerItem 
+                        icon={LabelIcon} 
+                        text={label} 
+                        onClick={() => setFilterKey(label)}
+                    />
+                </div>
             )}
         </List>
         <Divider/>

@@ -3,10 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import styles from '../static/css/CentralLayout.module.css';
 import { BASE_COLOUR }  from '../static/colorConstants';
-import { LabelContext } from '../utils/context.js'
+import { DispatchContext, LabelContext } from '../utils/context.js'
 
 import MainLayout from './MainLayout';
 import Header from './Header';
+import counter from '../reducer/index.js';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -86,6 +87,8 @@ const noteList = [
     dummy,
 ];
 
+const note9 = { id:9, title: "Lee Wai Fong", body: "XONE", tags: [] }
+
 const labelList = ["Kingsport", "Lannisport", "Innsmouth", "Da Norf", "Sean Bean"];
 
 // TODO utils folder with some functions inside
@@ -97,33 +100,70 @@ const sync = () => {
     };
 };
 
+
 // TODO change label portion to note card => form of labels currently selected and new labels
 // TODO delete/edit label portion to the drawer
 
-const StageOne = (props) => {
-    const [open, setOpen] = React.useState(true);
-    const [filterKey, setFilterKey] = React.useState("");
+const setFilterPred = (filterKey) => (note) => {
+    if (filterKey) {
+        return note.tags.map(word => word.toLowerCase())
+                .includes(filterKey.toLowerCase());
+    }
+    return true;
+}
 
+// action.type = ADD_NOTES, action.payload = { title: body: }
+const setDispatch = (prevState, setStateFunction) => action => {
+    // counter can be ignored i guess
+    setStateFunction(counter(prevState, action));
+}
+
+// package these into an object, and send it with context?
+const addNote = (prevState, noteToAdd) => {
+    // prevState is a list of the previous notes
+    //lets assume after we get fetch api
+    //shiit we need to fetch again after we post, or we cant
+    //get the id
+    const fetchReturn = prevState.concat(note9);
+    return fetchReturn;
+};
+
+const deleteNote = (prevState, id) => {
+    const fetchReturn = { id };
+    const newNotes = prevState.filter(note => note.id !== id);
+    return newNotes;
+}
+
+const StageOne = (props) => {
+    // for CSS stuff
+    const classes = useStyles();
+
+    // state, source of truth across whole app
     const [labels, setLabel] = React.useState(labelList);
     const [notes, setNotes] = React.useState(noteList);
 
+    // makes REST API calls, should set new state for the above
+    const dispatchNotes = setDispatch(notes, setNotes);
+    const dispatchLabels = setDispatch(labels, setLabel);
+    const DISPATCH = { 
+        DISPATCH_LABELS: dispatchLabels,
+        DISPATCH_NOTES: dispatchNotes,
+    }
 
-    React.useEffect(() => {
-        // fetch
-        console.log("use effect");
-    });
+    // local state for filtering by labels
+    const [filterKey, setFilterKey] = React.useState("");
+    const filterPred = setFilterPred(filterKey);
 
+    // state management for Drawer component (where the labels are at)
+    const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => { setOpen(true); };
     const handleDrawerClose = () => { setOpen(false); };
-    const classes = useStyles();
 
-    const filterPred = (note) => {
-        if (filterKey) {
-            return note.tags.map(word => word.toLowerCase())
-                    .includes(filterKey.toLowerCase());
-        }
-        return true;
-    }
+    React.useEffect(() => {
+        // fetch for the first time, like componentDidMount
+        console.log("use effect");
+        console.log();
+    });
 
     return (
         <div className={classes.container}>
@@ -132,6 +172,7 @@ const StageOne = (props) => {
                 handleDrawerOpen={handleDrawerOpen}
                 open={open}
             />
+            <DispatchContext.Provider value={DISPATCH}>
             <LabelContext.Provider value={labels}>
                 <MainLayout 
                     className={classes.mainLayout}
@@ -142,6 +183,7 @@ const StageOne = (props) => {
                     setFilterKey={setFilterKey}
                 />
             </LabelContext.Provider>
+            </DispatchContext.Provider>
         </div>
     );
 }

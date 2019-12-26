@@ -40,15 +40,23 @@ const useStyles = makeStyles({
     body: {
         padding: 2,
     },
+    label: {
+        transform: "scale(0.8)",
+    },
+    edit: {
+        transform: "scale(0.8)",
+    },
     bin: {
         transform: "scale(0.8)",
+        position: "relative",
+        left: 80,
     },
 });
 
 
 const NoteContent = (props) => {
     const classes = useStyles();
-    const { onClick, setFilterKey, tags, title, body } = props;
+    const { onClick, setFilterKey, tags=[], title, body } = props;
     const truncatedTags = tags.slice(0,2);
     const etcTag = (tags.length > truncatedTags.length)
         ?   <div className={styles.labelContainer}>
@@ -85,11 +93,23 @@ const NoteContent = (props) => {
             </div>
             <div>
                 <CardActions >
-                    <AddLabelToNoteDialog noteLabels={tags} />
-                    <IconButton className={classes.bin} aria-lael="edit" size="small" onClick={onClick}>
+                    <AddLabelToNoteDialog 
+                        className={classes.label} 
+                        noteLabels={tags} 
+                    />
+                    <IconButton 
+                        className={classes.edit} 
+                        aria-lael="edit" 
+                        size="small" 
+                        onClick={onClick}
+                    >
                         <EditIcon />
                     </IconButton>
-                    <IconButton className={classes.bin} aria-lael="delete" size="small">
+                    <IconButton 
+                        className={classes.bin} 
+                        aria-lael="delete" 
+                        size="small"
+                    >
                         <DeleteIcon />
                     </IconButton>
                 </CardActions>
