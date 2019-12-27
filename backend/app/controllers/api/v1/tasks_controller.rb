@@ -3,7 +3,11 @@ module Api      # create namespace
         class TasksController < ApplicationController
             def index
                 # query db for all tasks by date
-                @tasks = Task.order('created_at DESC');
+                @tasks = Task.order('updated_at DESC')
+                    .map { |task| JSON.parse(task.to_json) }
+                    .each { |x| puts x}
+                    .map { |task| task.merge(labels: findLabels(task["id"]) ) } ;
+                #@tasks = TaskLabel.joins(:task, :label).order('updated_at DESC');
                 render json: {status: 'SUCCESS', message:'Retrieved tasks', data: @tasks}, status: :ok
             end
 
@@ -52,6 +56,13 @@ module Api      # create namespace
             private
             def task_params
                 params.permit(:title, :body)
+            end
+
+            def findLabels(param_id)
+                task = Task.find(param_id)
+                # all users
+                tasklabels = TaskLabel.where(task_id: task.id)
+                labels = tasklabels.map { |x| Label.find(x.label_id) }
             end
         end
     end

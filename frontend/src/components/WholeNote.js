@@ -23,6 +23,7 @@ const WholeNote = (props) => {
                 {...noteContent}
             />
             <NoteForm 
+                handleSubmit={() => console.log("TODO")}
                 onClose={handleClose} 
                 open={open} 
                 setFilterKey={setFilterKey} 

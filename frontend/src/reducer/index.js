@@ -2,8 +2,10 @@ import {
     ADD_NOTE,
     DELETE_NOTE,
     UPDATE_NOTE,
+    SYNC_NOTE,
     DISPATCH_NOTES,
     DISPATCH_LABELS,
+    SYNC_TAG,
  } from '../utils/type.js'
 
 
@@ -18,6 +20,16 @@ export default function (prevState, action) {
             return //deleteNote(prevState, action.payload);
         case UPDATE_NOTE:
             return
+        case SYNC_NOTE:
+            //action.payload.forEach(x => console.log(x));
+            return action.payload.map(({ labels, ...rest }) => {
+                return {
+                    ...rest,
+                    tags: labels.map(label => label.l_name)
+                }
+            });
+        case SYNC_TAG:
+            return action.payload.map(label => label.l_name);
         default:
             return prevState;
     }

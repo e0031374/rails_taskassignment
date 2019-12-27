@@ -2,12 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import styles from '../static/css/CentralLayout.module.css';
-import { BASE_COLOUR }  from '../static/colorConstants';
+import { BASE_COLOUR }  from '../constants.js';
 import { DispatchContext, LabelContext } from '../utils/context.js'
 
 import MainLayout from './MainLayout';
 import Header from './Header';
 import counter from '../reducer/index.js';
+import { syncWithDatabase } from '../actions/index.js';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -161,12 +162,9 @@ const StageOne = (props) => {
 
     React.useEffect(() => {
         // fetch for the first time, like componentDidMount
-        fetch('/api/v1/tasks')
-            .then(response => response.json())
-            .then(data => console.log(data));
-        console.log("use effect");
-        console.log();
-    });
+        syncWithDatabase(DISPATCH);
+        console.log(notes);
+    }, []);
 
     return (
         <div className={classes.container}>
