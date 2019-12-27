@@ -42,7 +42,7 @@ const AddLabelToNoteDialog = ({noteLabels}) => {
         <div>
             <IconButton 
                 className={classes.bin} 
-                aria-lael="label" 
+                aria-label="label" 
                 size="small"
                 onClick={handleClickOpen}
             >
@@ -52,7 +52,10 @@ const AddLabelToNoteDialog = ({noteLabels}) => {
                 <DialogTitle>Label Note</DialogTitle>
                 <FormGroup className={classes.form}>
                     {labels.map(label =>
-                        <AddLabelItem text={label}/>
+                        <AddLabelItem 
+                            key={label}
+                            text={label}
+                        />
                     )}
                 </FormGroup>
                 <ListItem>

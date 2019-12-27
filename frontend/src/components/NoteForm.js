@@ -98,8 +98,12 @@ const NoteForm = (props) => {
                     <ListItem>
                         <div className={styles.allLabelContainer}>
                             { tags.map( tag => 
-                                <div className={styles.labelContainer}>
+                                <div 
+                                    className={styles.labelContainer}
+                                    key={tag}
+                                >
                                     <LabelChip 
+                                        key={tag}
                                         label={tag}
                                         onClick={() => setFilterKey(tag)}
                                     />

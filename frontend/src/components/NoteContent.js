@@ -85,7 +85,10 @@ const NoteContent = (props) => {
             </CardContent>
             <div className={styles.allLabelContainer}>
                 { truncatedTags.map( tag => 
-                <div className={styles.labelContainer}>
+                <div 
+                    className={styles.labelContainer}
+                    key={tag}
+                >
                     <LabelChip label={tag} onClick={() => setFilterKey(tag)}/>
                 </div>
                 )}
@@ -99,7 +102,7 @@ const NoteContent = (props) => {
                     />
                     <IconButton 
                         className={classes.edit} 
-                        aria-lael="edit" 
+                        aria-label="edit" 
                         size="small" 
                         onClick={onClick}
                     >
@@ -107,7 +110,7 @@ const NoteContent = (props) => {
                     </IconButton>
                     <IconButton 
                         className={classes.bin} 
-                        aria-lael="delete" 
+                        aria-label="delete" 
                         size="small"
                     >
                         <DeleteIcon />

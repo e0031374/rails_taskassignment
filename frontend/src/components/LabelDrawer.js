@@ -84,8 +84,12 @@ const LabelDrawer = ({
         <Divider/>
         <List>
             {labels.map(label => 
-                <div className={classes.listitem} >
+                <div 
+                    className={classes.listitem} 
+                    key={label}
+                >
                     <LabelDrawerItem 
+                        key={label}
                         icon={LabelIcon} 
                         text={label} 
                         onClick={() => setFilterKey(label)}

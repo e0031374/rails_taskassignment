@@ -18,7 +18,10 @@ const NoteLayout = ({ notes, ...rest }) => {
     return (
         <div className={styles.mainContainer}>
             { notes.map(note => 
-                <div className={styles.noteContainer}>
+                <div 
+                    className={styles.noteContainer}
+                    key={note.id}
+                >
                     <WholeNote 
                         key={note.id} 
                         noteContent={note} 

@@ -26,8 +26,15 @@ const useStyles = makeStyles({
     },
 });
 
+const setOnChange = setFunction => e => {
+    setFunction(e.target.value);
+}
+
 // onClick is is a regular function to reset the map
 const CreateLabelItem = ({onClick, onSubmit}) =>  {
+    // TODO make sure onSubmit ensures length is > 1
+    const [localTag, setTag] = React.useState("");
+    const setLocalTag = setOnChange(setTag);
 
     const classes = useStyles();
 
@@ -42,8 +49,9 @@ const CreateLabelItem = ({onClick, onSubmit}) =>  {
                     <ClearIcon/>
                 </IconButton>
                 <TextField 
-                    id="standard-basic"
                     label="Create new label"
+                    onChange={setLocalTag}
+                    value={localTag}
                     variant="outlined"
                 />
                 <IconButton className={classes.bin} type="submit" aria-label="submit">

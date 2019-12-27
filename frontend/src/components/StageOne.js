@@ -160,17 +160,22 @@ const StageOne = (props) => {
     const handleDrawerOpen = () => { setOpen(true); };
     const handleDrawerClose = () => { setOpen(false); };
 
+    const handleRefresh = () => syncWithDatabase(DISPATCH);
+
     React.useEffect(() => {
         // fetch for the first time, like componentDidMount
-        syncWithDatabase(DISPATCH);
+        handleRefresh();
+        //syncWithDatabase(DISPATCH);
         console.log(notes);
     }, []);
+
 
     return (
         <div className={classes.container}>
             <Header
                 className={classes.header}
                 handleDrawerOpen={handleDrawerOpen}
+                handleRefresh={handleRefresh}
                 open={open}
             />
             <DispatchContext.Provider value={DISPATCH}>

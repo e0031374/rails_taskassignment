@@ -29,7 +29,10 @@ const EditLabelDialog = ({labels, onClose, open}) => {
             <List>
                 <CreateLabelItem/>
                 {labels.map(label =>
-                    <EditLabelItem text={label} />
+                    <EditLabelItem 
+                        key={label}
+                        text={label} 
+                    />
                 )}
             </List>
             <ListItem>
