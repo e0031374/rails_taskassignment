@@ -83,6 +83,10 @@ export const fetchToUpdateNote = (dispatch, { title, body }) => {
 }
 
 export const fetchToAddLabel = (dispatch, {}) => {
+    //
+}
+
+export const deleteNote = () => {
 }
 
 

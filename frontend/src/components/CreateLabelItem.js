@@ -51,6 +51,7 @@ const CreateLabelItem = ({onClick, onSubmit}) =>  {
                 <TextField 
                     label="Create new label"
                     onChange={setLocalTag}
+                    helperText="label cannot be blank or a duplicate"
                     value={localTag}
                     variant="outlined"
                 />

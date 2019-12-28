@@ -33,6 +33,8 @@ const setOnChange = setFunction => e => {
     setFunction(e.target.value);
 }
 
+const isValid = (text) => text.length !== 0;
+
 const NoteForm = (props) => {
     const dispatch = React.useContext(DispatchContext);
     const { body, handleSubmit, tags=[], title, setFilterKey } = props;
@@ -47,10 +49,13 @@ const NoteForm = (props) => {
     const handleClose = (e) => {
         // this one goes to the parent
         onClose(someValue);
-        const newNote = { title: localTitle, body: localBody };
-        handleSubmit(dispatch, newNote);
+
+        if (isValid(localBody)) {
+            const newNote = { title: localTitle, body: localBody };
+            handleSubmit(dispatch, newNote);
+            console.log("form submitted");
+        }
         resetLocalState();
-        console.log("form submitted");
     }
 
     const resetLocalState = () => { 
@@ -63,7 +68,9 @@ const NoteForm = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        handleClose(e);
+        if (isValid(localBody)) {
+            handleClose(e);
+        }
     }
 
     return (
@@ -86,6 +93,8 @@ const NoteForm = (props) => {
                         <TextField
                             autoComplete='off'
                             className={classes.body} 
+                            error={localBody.length === 0}
+                            helperText="body of note cannot be blank"
                             multiline={true}
                             label="Take a note..." 
                             name="body" 
