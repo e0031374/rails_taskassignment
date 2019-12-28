@@ -26,12 +26,12 @@ const useStyles = makeStyles(theme => ({
 
 
 const taglist = [
-    "alpha",
-    "beta",
-    "gamma",
-    "delta",
-    "epsilon",
-    "sigma",
+    { id: "51", l_name: "alpha"},
+    { id: "52", l_name: "beta"},
+    { id: "53", l_name: "gamma"},
+    { id: "54", l_name: "delta"},
+    { id: "55", l_name: "epsilon"},
+    { id: "56", l_name: "sigma"},
 ];
 
 const dummy = { id: 99, title: "Kingsport", body: "Home of the Deep Ones worshipping the great old one Cthulhu, served by servants with bulging foreheads. Really gloomy weather.", tags : taglist};
@@ -41,25 +41,45 @@ const noteList = [
         id: 1,
         title: "Lannisport",
         body: "Next to casterly rock",
-        tags: ["Lannister", "Casterling", "Harbor", "Greyjoy"],
+        tags: [
+            { id: 61, l_name: "Lannister" }, 
+            { id: 62, l_name: "Casterling" }, 
+            { id: 63, l_name: "Harbor" }, 
+            { id: 64, l_name: "Greyjoy" }, 
+        ]
     },
     {
         id: 2,
         title: "Innsmouth",
         body: "Worshipping the Deep Ones",
-        tags: ["Cthulhu", "Dagon", "Harbor", "FishHeads"],
+        tags: [
+            { id: 61, l_name: "Cthulhu" }, 
+            { id: 62, l_name: "Dagon" }, 
+            { id: 63, l_name: "Harbor" }, 
+            { id: 64, l_name: "FishHeads" }, 
+        ]
     },
     {
         id:3,
         title: "Dunwich",
         body: "the Horrors and that family",
-        tags: ["twin", "evil", "necronomicon", "Whatleys"],
+        tags: [
+            { id: 61, l_name: "twin" }, 
+            { id: 62, l_name: "evil" }, 
+            { id: 63, l_name: "nerconomicon" }, 
+            { id: 64, l_name: "whatleys" }, 
+        ],
     },
     {
         id: 4,
         title: "Winterfell",
         body: "Winter is Coming",
-        tags: ["Winter", "Starks", "Direwolf", "Greyjoy"],
+        tags: [
+            { id: 61, l_name: "winter" }, 
+            { id: 62, l_name: "starks" }, 
+            { id: 63, l_name: "direwolf" }, 
+            { id: 64, l_name: "greyjoy" }, 
+        ],
     },
     {
         id: 5,
@@ -105,10 +125,15 @@ const sync = () => {
 // TODO change label portion to note card => form of labels currently selected and new labels
 // TODO delete/edit label portion to the drawer
 
+// creates a filter predicate to ensure
 const setFilterPred = (filterKey) => (note) => {
+    // filterKey is an object { id: X, l_name: "sth" } or false literal
+    // used by clicking labelChip or labelDrawerItem or showAllNotes drawer items
+    const somePred = (tagObj) => tagObj.id === filterKey.id;
     if (filterKey) {
-        return note.tags.map(word => word.toLowerCase())
-                .includes(filterKey.toLowerCase());
+        return note.tags.map(somePred);
+        //return note.tags.map(word => word.toLowerCase())
+        //        .includes(filterKey.toLowerCase());
     }
     return true;
 }
@@ -140,8 +165,10 @@ const StageOne = (props) => {
     const classes = useStyles();
 
     // state, source of truth across whole app
-    const [labels, setLabel] = React.useState(labelList);
-    const [notes, setNotes] = React.useState(noteList);
+    //const [labels, setLabel] = React.useState(labelList);
+    //const [notes, setNotes] = React.useState(noteList);
+    const [labels, setLabel] = React.useState([]);
+    const [notes, setNotes] = React.useState([]);
 
     // makes REST API calls, should set new state for the above
     const dispatchNotes = setDispatch(notes, setNotes);

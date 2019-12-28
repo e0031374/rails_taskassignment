@@ -17,6 +17,8 @@ import {
     TASK_BASE 
 }  from '../constants.js';
 
+import axios from 'axios';
+
 // actions do your api fetch
 // Component (NoteForm) -> Action (here) -> Component (StageOne, setNote) 
 //      -> Reducer (counter) -> FETCH -> Component (StageOne, setNote)
@@ -82,8 +84,14 @@ export const fetchToUpdateNote = (dispatch, { title, body }) => {
     dispatch[DISPATCH_NOTES](action);
 }
 
-export const fetchToAddLabel = (dispatch, {}) => {
-    //
+export const fetchToAddLabel = (dispatch, { l_name }) => {
+    const labelUrl = API_URL[LABEL_BASE];
+    const postPayload = { l_name };
+    console.log(labelUrl);
+    axios.post(labelUrl,postPayload)
+        .then(console.log("fine"))
+        .then(syncLabelsWithDatabase(dispatch))
+        .catch(data => console.log(data))
 }
 
 export const deleteNote = () => {

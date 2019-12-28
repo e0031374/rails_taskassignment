@@ -11,6 +11,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import ClearIcon from '@material-ui/icons/Clear';
 import DoneIcon from '@material-ui/icons/Done';
+import { fetchToAddLabel } from '../actions/index.js';
+import { DispatchContext } from '../utils/context.js'
 
 const useStyles = makeStyles({
     bin: {
@@ -31,10 +33,19 @@ const setOnChange = setFunction => e => {
 }
 
 // onClick is is a regular function to reset the map
-const CreateLabelItem = ({onClick, onSubmit}) =>  {
+const CreateLabelItem = ({onClick}) =>  {
     // TODO make sure onSubmit ensures length is > 1
     const [localTag, setTag] = React.useState("");
     const setLocalTag = setOnChange(setTag);
+
+    const dispatch = React.useContext(DispatchContext);
+    const onSubmit = (e) => {
+        // verify label, pass close in here to close this
+        e.preventDefault();
+        console.log("here");
+        const tagToPost = { l_name: localTag };
+        fetchToAddLabel(dispatch, tagToPost);
+    }
 
     const classes = useStyles();
 

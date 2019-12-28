@@ -56,7 +56,7 @@ const useStyles = makeStyles({
 
 const NoteContent = (props) => {
     const classes = useStyles();
-    const { onClick, setFilterKey, tags=[], title, body } = props;
+    const { onClick, setFilterKey, labels:tags=[], title, body } = props;
     const truncatedTags = tags.slice(0,2);
     const etcTag = (tags.length > truncatedTags.length)
         ?   <div className={styles.labelContainer}>
@@ -87,9 +87,9 @@ const NoteContent = (props) => {
                 { truncatedTags.map( tag => 
                 <div 
                     className={styles.labelContainer}
-                    key={tag}
+                    key={tag.id}
                 >
-                    <LabelChip label={tag} onClick={() => setFilterKey(tag)}/>
+                    <LabelChip label={tag} setFilterKey={setFilterKey}/>
                 </div>
                 )}
                 {etcTag}

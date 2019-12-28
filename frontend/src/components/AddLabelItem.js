@@ -27,7 +27,8 @@ const useStyles = makeStyles({
 });
 
 // onClick is is a regular function to reset the map
-const AddLabelItem = ({text, onClick, onSubmit}) =>  {
+const AddLabelItem = ({label, onClick, onSubmit}) =>  {
+    const { l_name:text, id} = label;
     const [checkedState, setState] = React.useState(false);
 
     const handleChange = (event) => { 

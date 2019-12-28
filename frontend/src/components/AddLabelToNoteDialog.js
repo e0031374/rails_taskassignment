@@ -31,7 +31,8 @@ const useStyles = makeStyles({
 const AddLabelToNoteDialog = ({noteLabels}) => {
     const allLabels = React.useContext(LabelContext);
     const classes = useStyles();
-    const labels = allLabels.filter(x => !noteLabels.includes(x));
+    //const labels = allLabels.filter(x => !noteLabels.includes(x));
+    const labels = allLabels.filter(x => !noteLabels.some(y => y.id === x.id));
 
     const [open, setOpen] = React.useState(false);
     
@@ -53,8 +54,8 @@ const AddLabelToNoteDialog = ({noteLabels}) => {
                 <FormGroup className={classes.form}>
                     {labels.map(label =>
                         <AddLabelItem 
-                            key={label}
-                            text={label}
+                            key={label.id}
+                            label={label}
                         />
                     )}
                 </FormGroup>

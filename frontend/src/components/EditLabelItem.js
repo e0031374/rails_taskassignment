@@ -29,8 +29,9 @@ const setOnChange = setFunction => e => {
 }
 
 // onClick is is a regular function to reset the map
-const EditLabelItem = ({text, onClick, onSubmit}) =>  {
+const EditLabelItem = ({label, onClick, onSubmit}) =>  {
     // TODO make sure onSubmit ensures length is > 1
+    const { l_name:text, id } = label;
     const [localTag, setTag] = React.useState(text);
     const onChangeTag = setOnChange(setTag);
 

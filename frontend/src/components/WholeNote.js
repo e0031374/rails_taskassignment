@@ -12,7 +12,7 @@ const WholeNote = (props) => {
 
     const [open, setOpen] = React.useState(false);
 
-    const handleOpen = () => { console.log("..."); setOpen(true);};
+    const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     return (

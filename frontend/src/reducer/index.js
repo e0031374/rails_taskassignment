@@ -22,14 +22,15 @@ export default function (prevState, action) {
             return
         case SYNC_NOTE:
             //action.payload.forEach(x => console.log(x));
-            return action.payload.map(({ labels, ...rest }) => {
-                return {
-                    ...rest,
-                    tags: labels.map(label => label.l_name)
-                }
-            });
+            return action.payload;
+            //return action.payload.map(({ labels, ...rest }) => {
+            //    return {
+            //        ...rest,
+            //        tags: labels.map(label => label.l_name)
+            //    }
+            //});
         case SYNC_TAG:
-            return action.payload.map(label => label.l_name);
+            return action.payload; //action.payload.map(label => label.l_name);
         default:
             return prevState;
     }

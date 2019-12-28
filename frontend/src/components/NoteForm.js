@@ -11,7 +11,7 @@ import {
     TextField,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { DISPATCH_NOTES} from '../utils/type.js';
+//import { DISPATCH_NOTES} from '../utils/type.js';
 import { DispatchContext } from '../utils/context.js'
 
 import LabelChip from './LabelChip';
@@ -37,7 +37,7 @@ const isValid = (text) => text.length !== 0;
 
 const NoteForm = (props) => {
     const dispatch = React.useContext(DispatchContext);
-    const { body, handleSubmit, tags=[], title, setFilterKey } = props;
+    const { body, handleSubmit, labels:tags=[], title, setFilterKey } = props;
     const { open, onClose} = props;
 
     const [localTitle, setTitle] = React.useState(title);
@@ -109,10 +109,10 @@ const NoteForm = (props) => {
                             { tags.map( tag => 
                                 <div 
                                     className={styles.labelContainer}
-                                    key={tag}
+                                    key={tag.id}
                                 >
                                     <LabelChip 
-                                        key={tag}
+                                        key={tag.id}
                                         label={tag}
                                         onClick={() => setFilterKey(tag)}
                                     />
