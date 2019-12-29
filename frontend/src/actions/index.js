@@ -102,6 +102,14 @@ export const deleteLabel = (dispatch, id) => {
         .catch(data => console.log(data));
 }
 
+export const updateLabel = (dispatch, { id, l_name }) => {
+    const labelUrl = API_URL[LABEL_BASE] + `/${id}`;
+    console.log(labelUrl);
+    axios.patch(labelUrl, { l_name })
+        .then(() => syncWithDatabase(dispatch))
+        .catch(data => console.log(data));
+}
+
 
 //const isResponseOk = (response)
 

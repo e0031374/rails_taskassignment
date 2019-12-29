@@ -11,8 +11,9 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import LabelIcon from '@material-ui/icons/Label';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { deleteLabel } from '../actions/index.js';
+import { deleteLabel, updateLabel } from '../actions/index.js';
 import { DispatchContext, LabelContext } from '../utils/context.js'
+import { isDuplicateLabel } from '../utils/index.js'
 
 const useStyles = makeStyles({
     bin: {
@@ -35,10 +36,50 @@ const EditLabelItem = ({label, onClick, onSubmit}) =>  {
     // TODO make sure onSubmit ensures length is > 1
     const { l_name:text, id } = label;
     const [localTag, setTag] = React.useState(text);
+    const initialState = {
+        dirty: false,
+        error: false,
+        helperText: "",
+    };
+    const [currState, setState] = React.useState(initialState);
+
+    // new label name should not be equivalent to old label name
+    const allLabels = React.useContext(LabelContext);
+    const isDuplicate = isDuplicateLabel(allLabels);
+
     const onChangeTag = setOnChange(setTag);
 
     const classes = useStyles();
     const dispatch = React.useContext(DispatchContext);
+
+    const handleRename = (e) => {
+        e.preventDefault();
+
+        if (localTag.toLowerCase() === text.toLowerCase()) {
+            setState({ 
+                ...currState, 
+                helperText: "label is unchanged", 
+            });
+            return;
+        }
+
+        if ((localTag === "") || isDuplicate(localTag)) {
+            setState({ 
+                ...currState, 
+                error: true,
+                helperText: "label cannot be blank or a duplicate", 
+            });
+            return;
+        }
+        
+        updateLabel(dispatch, { ...label, l_name: localTag });
+        setState({ 
+            ...currState, 
+            error: false,
+            helperText: "label updated", 
+        });
+        return;
+    }
 
     const handleDelete = (e) => {
         e.preventDefault();
@@ -56,10 +97,12 @@ const EditLabelItem = ({label, onClick, onSubmit}) =>  {
             </IconButton>
             <form 
                 className={classes.form} 
-                onSubmit={onSubmit}
+                onSubmit={handleRename}
             >
                 <TextField 
                     autoComplete="off"
+                    error={currState.error}
+                    helperText={currState.helperText}
                     onChange={onChangeTag}
                     value={localTag}
                 />

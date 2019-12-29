@@ -13,6 +13,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import DoneIcon from '@material-ui/icons/Done';
 import { addLabel } from '../actions/index.js';
 import { DispatchContext, LabelContext } from '../utils/context.js'
+import { isDuplicateLabel } from '../utils/index.js'
 
 const useStyles = makeStyles({
     bin: {
@@ -39,10 +40,10 @@ const CreateLabelItem = ({onClick}) =>  {
     const [isError, setError] = React.useState(false);
     const helperText = "label cannot be blank or a duplicate"
     const setLocalTag = setOnChange(setTag);
-    const allLabels = React.useContext(LabelContext);
 
     // new label name should not be equivalent to old label name
-    const isDuplicate = (tagName) => allLabels.some(label => label.l_name.toLowerCase() === tagName.toLowerCase() );
+    const allLabels = React.useContext(LabelContext);
+    const isDuplicate = isDuplicateLabel(allLabels);
 
     const dispatch = React.useContext(DispatchContext);
     const onSubmit = (e) => {

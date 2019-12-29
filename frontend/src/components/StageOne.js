@@ -125,13 +125,14 @@ const sync = () => {
 // TODO change label portion to note card => form of labels currently selected and new labels
 // TODO delete/edit label portion to the drawer
 
-// creates a filter predicate to ensure
+// given a keyword to filter
+// returns a filterPredicate to use in array.filter
 const setFilterPred = (filterKey) => (note) => {
     // filterKey is an object { id: X, l_name: "sth" } or false literal
     // used by clicking labelChip or labelDrawerItem or showAllNotes drawer items
     const somePred = (tagObj) => tagObj.id === filterKey.id;
     if (filterKey) {
-        return note.tags.map(somePred);
+        return note.labels.some(somePred);
         //return note.tags.map(word => word.toLowerCase())
         //        .includes(filterKey.toLowerCase());
     }
