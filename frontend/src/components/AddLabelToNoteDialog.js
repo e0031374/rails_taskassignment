@@ -32,6 +32,7 @@ const AddLabelToNoteDialog = ({noteLabels}) => {
     const allLabels = React.useContext(LabelContext);
     const classes = useStyles();
     //const labels = allLabels.filter(x => !noteLabels.includes(x));
+    // ensures that only labels which are not tagged to this note are shown
     const labels = allLabels.filter(x => !noteLabels.some(y => y.id === x.id));
 
     const [open, setOpen] = React.useState(false);
