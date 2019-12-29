@@ -58,7 +58,14 @@ const useStyles = makeStyles({
 
 const NoteContent = (props) => {
     const classes = useStyles();
-    const { onClick, setFilterKey, id, labels:tags=[], title, body } = props;
+    const { 
+        onClick, 
+        setFilterKey, 
+        id, 
+        labels:tags=[], 
+        title, 
+        body 
+    } = props;
     const truncatedTags = tags.slice(0,2);
     const dispatch = React.useContext(DispatchContext);
 
@@ -108,6 +115,7 @@ const NoteContent = (props) => {
                     <AddLabelToNoteDialog 
                         className={classes.label} 
                         noteLabels={tags} 
+                        taskId={id}
                     />
                     <IconButton 
                         className={classes.edit} 

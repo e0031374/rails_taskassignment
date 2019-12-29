@@ -14,7 +14,8 @@ import {
 import { 
     API_URL, 
     LABEL_BASE, 
-    TASK_BASE 
+    TASK_BASE, 
+    TASKLABEL_BASE, 
 }  from '../constants.js';
 
 import axios from 'axios';
@@ -62,6 +63,14 @@ export const fetchToAddNote = async (dispatch, { title, body }) => {
     syncNotesWithDatabase(dispatch);
 }
 
+export const addNote = (dispatch, { title, body }) => {
+    const noteUrl = API_URL[TASK_BASE];
+    console.log(noteUrl);
+    axios.post(noteUrl, { title, body })
+        .then( () => syncNotesWithDatabase(dispatch))
+        .catch(data => console.log(data));
+}
+
 export const updateNote = (dispatch, { id, title, body }) => {
     const noteUrl = API_URL[TASK_BASE] + `/${id}`;
     console.log(noteUrl);
@@ -101,6 +110,14 @@ export const updateLabel = (dispatch, { id, l_name }) => {
     console.log(labelUrl);
     axios.patch(labelUrl, { l_name })
         .then(() => syncWithDatabase(dispatch))
+        .catch(data => console.log(data));
+}
+
+export const addLabelToNote = (dispatch, { task_id, label_id }) => {
+    const taskLabelUrl = API_URL[TASKLABEL_BASE];// + `/${task_id}`;
+    console.log(taskLabelUrl);
+    axios.post(taskLabelUrl, { task_id, label_id })
+        .then(() => syncNotesWithDatabase(dispatch))
         .catch(data => console.log(data));
 }
 

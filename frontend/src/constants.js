@@ -9,10 +9,12 @@ const ROOT_API = "";
 export const API_URL = {
     TASK_BASE: `${ROOT_API}/api/v1/tasks`,
     LABEL_BASE: `${ROOT_API}/api/v1/labels`,
+    TASKLABEL_BASE: `${ROOT_API}/api/v1/tasklabels`,
 }
 
 export const TASK_BASE = "TASK_BASE";
 export const LABEL_BASE = "LABEL_BASE";
+export const TASKLABEL_BASE = "TASKLABEL_BASE";
 
 
 

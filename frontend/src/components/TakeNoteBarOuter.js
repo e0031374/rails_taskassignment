@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import TakeNoteBar from './TakeNoteBar.js';
 import NoteForm from './NoteForm';
-import { fetchToAddNote } from '../actions/index.js';
+import { addNote } from '../actions/index.js';
 
 //import useNoteFormWrapper from './useNoteFormWrapper';
 
@@ -32,7 +32,7 @@ const TakeNoteBarOuter  = (props) => {
             <TakeNoteBar onClick={handleOpen} {...props}/>
             <NoteForm 
                 body=""
-                handleSubmit={fetchToAddNote}
+                handleSubmit={addNote}
                 open={open} 
                 onClose={handleClose} 
                 title=""
