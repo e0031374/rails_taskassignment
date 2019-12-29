@@ -11,6 +11,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import LabelIcon from '@material-ui/icons/Label';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { deleteLabel } from '../actions/index.js';
+import { DispatchContext, LabelContext } from '../utils/context.js'
 
 const useStyles = makeStyles({
     bin: {
@@ -36,10 +38,20 @@ const EditLabelItem = ({label, onClick, onSubmit}) =>  {
     const onChangeTag = setOnChange(setTag);
 
     const classes = useStyles();
+    const dispatch = React.useContext(DispatchContext);
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        deleteLabel(dispatch, id);
+    }
 
     return (
         <ListItem className={classes.item}>
-            <IconButton className={classes.bin} aria-label="delete">
+            <IconButton 
+                aria-label="delete"
+                className={classes.bin} 
+                onClick={handleDelete}
+            >
                 <DeleteIcon />
             </IconButton>
             <form 

@@ -11,7 +11,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import ClearIcon from '@material-ui/icons/Clear';
 import DoneIcon from '@material-ui/icons/Done';
-import { fetchToAddLabel } from '../actions/index.js';
+import { addLabel } from '../actions/index.js';
 import { DispatchContext, LabelContext } from '../utils/context.js'
 
 const useStyles = makeStyles({
@@ -56,7 +56,7 @@ const CreateLabelItem = ({onClick}) =>  {
 
         setError(false);
         const tagToPost = { l_name: localTag };
-        fetchToAddLabel(dispatch, tagToPost);
+        addLabel(dispatch, tagToPost);
         setTag("");
     }
 

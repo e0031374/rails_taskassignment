@@ -84,7 +84,7 @@ export const fetchToUpdateNote = (dispatch, { title, body }) => {
     dispatch[DISPATCH_NOTES](action);
 }
 
-export const fetchToAddLabel = (dispatch, { l_name }) => {
+export const addLabel = (dispatch, { l_name }) => {
     const labelUrl = API_URL[LABEL_BASE];
     const postPayload = { l_name };
     console.log(labelUrl);
@@ -94,7 +94,12 @@ export const fetchToAddLabel = (dispatch, { l_name }) => {
         .catch(data => console.log(data))
 }
 
-export const deleteNote = () => {
+export const deleteLabel = (dispatch, id) => {
+    const labelUrl = API_URL[LABEL_BASE] + `/${id}`;
+    console.log(labelUrl);
+    axios.delete(labelUrl)
+        .then( () => syncLabelsWithDatabase(dispatch))
+        .catch(data => console.log(data));
 }
 
 
