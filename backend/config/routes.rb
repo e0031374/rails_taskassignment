@@ -13,7 +13,12 @@ Rails.application.routes.draw do
                     get 'tasks'
                 end
             end
-            resources :tasklabels
+            resources :tasklabels do
+#            resources :tasklabels, path: 'tasklabels' do
+                collection do
+                    delete ':task_id/:label_id', action: :destroy_relation
+                end
+            end
         end
     end
 end

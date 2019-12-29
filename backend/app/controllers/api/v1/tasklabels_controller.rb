@@ -43,6 +43,7 @@ module Api      # create namespace
                 end
             end
 
+            # NOTE: destroy_relation custom URI
             def destroy         # for DELETE request
                 @tasklabel = TaskLabel.find(params[:id])
                 @tasklabel.destroy
@@ -64,6 +65,16 @@ module Api      # create namespace
             #    end
             #end
             
+            def destroy_relation 
+                @tasklabelhits = TaskLabel.where("task_id = ? AND label_id = ?", params[:task_id], params[:label_id])
+                tasklabel = @tasklabelhits[0]
+                tasklabel.destroy
+                render json: {status: 'SUCCESS', message:'Deleted TaskLabel relationship', 
+                    data: tasklabel},status: :ok
+                
+
+            end
+    
             private
             def tasklabel_params
                 params.permit(:label_id, :task_id)
