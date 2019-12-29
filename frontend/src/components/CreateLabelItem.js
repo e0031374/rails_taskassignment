@@ -57,6 +57,12 @@ const CreateLabelItem = ({onClick}) =>  {
         setError(false);
         const tagToPost = { l_name: localTag };
         fetchToAddLabel(dispatch, tagToPost);
+        setTag("");
+    }
+
+    const onClear = (e) => {
+        e.preventDefault();
+        setTag("");
     }
 
     const classes = useStyles();
@@ -68,7 +74,11 @@ const CreateLabelItem = ({onClick}) =>  {
                 className={classes.form} 
                 onSubmit={onSubmit}
             >
-                <IconButton className={classes.bin} aria-label="clear">
+                <IconButton 
+                    className={classes.bin} 
+                    onClick={onClear}
+                    aria-label="clear"
+                >
                     <ClearIcon/>
                 </IconButton>
                 <TextField 

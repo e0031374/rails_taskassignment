@@ -90,7 +90,7 @@ export const fetchToAddLabel = (dispatch, { l_name }) => {
     console.log(labelUrl);
     axios.post(labelUrl,postPayload)
         .then(console.log("fine"))
-        .then(syncLabelsWithDatabase(dispatch))
+        .then( () => syncLabelsWithDatabase(dispatch))
         .catch(data => console.log(data))
 }
 
