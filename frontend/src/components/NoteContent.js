@@ -13,8 +13,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import LabelIcon from '@material-ui/icons/Label';
+import { deleteNote } from '../actions/index.js';
 
 import AddLabelToNoteDialog from './AddLabelToNoteDialog.js';
+import { DispatchContext } from '../utils/context.js'
 
 import LabelChip from './LabelChip';
 
@@ -56,8 +58,15 @@ const useStyles = makeStyles({
 
 const NoteContent = (props) => {
     const classes = useStyles();
-    const { onClick, setFilterKey, labels:tags=[], title, body } = props;
+    const { onClick, setFilterKey, id, labels:tags=[], title, body } = props;
     const truncatedTags = tags.slice(0,2);
+    const dispatch = React.useContext(DispatchContext);
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        deleteNote(dispatch, id);
+    };
+
     const etcTag = (tags.length > truncatedTags.length)
         ?   <div className={styles.labelContainer}>
                 <Chip 
@@ -111,6 +120,7 @@ const NoteContent = (props) => {
                     <IconButton 
                         className={classes.bin} 
                         aria-label="delete" 
+                        onClick={handleDelete}
                         size="small"
                     >
                         <DeleteIcon />

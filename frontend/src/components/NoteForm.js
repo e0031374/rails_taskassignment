@@ -37,7 +37,7 @@ const isValid = (text) => text.length !== 0;
 
 const NoteForm = (props) => {
     const dispatch = React.useContext(DispatchContext);
-    const { body, handleSubmit, labels:tags=[], title, setFilterKey } = props;
+    const { id, body="", handleSubmit, labels:tags=[], title="", setFilterKey } = props;
     const { open, onClose} = props;
 
     const [localTitle, setTitle] = React.useState(title);
@@ -49,9 +49,19 @@ const NoteForm = (props) => {
     const handleClose = (e) => {
         // this one goes to the parent
         onClose(someValue);
+        const isTitleUnchanged = localTitle.toLowerCase() === title.toLowerCase();
+        const isBodyUnchanged = localBody.toLowerCase() === body.toLowerCase();
+
+        console.log("preunchanged");
+        if (isTitleUnchanged && isBodyUnchanged) {
+            console.log("unchanged");
+            return;
+        }
+        console.log("changed");
 
         if (isValid(localBody)) {
-            const newNote = { title: localTitle, body: localBody };
+            // NOTE: id is undefined for taking new note, required for updating
+            const newNote = { id, title: localTitle, body: localBody };
             handleSubmit(dispatch, newNote);
             console.log("form submitted");
         }
@@ -59,8 +69,12 @@ const NoteForm = (props) => {
     }
 
     const resetLocalState = () => { 
-        setTitle(title); 
-        setBody(body); 
+        // workaround, this will reset only if it is a fresh note to be taken
+        // no reset required if it is editing a note
+        if (title === "" && body === "") {
+            setTitle(title); 
+            setBody(body); 
+        }
     }
 
     const someValue = undefined; //TODO

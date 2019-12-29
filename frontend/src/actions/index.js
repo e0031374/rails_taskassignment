@@ -22,18 +22,6 @@ import axios from 'axios';
 // actions do your api fetch
 // Component (NoteForm) -> Action (here) -> Component (StageOne, setNote) 
 //      -> Reducer (counter) -> FETCH -> Component (StageOne, setNote)
-//export const fetchToAddNote = (dispatch, { title, body }) => {
-//    //call Dispatch
-//    const action = {
-//        type: ADD_NOTE,
-//        payload: {
-//            title,
-//            body,
-//        },
-//    };
-//    // FETCH here in real life
-//    dispatch[DISPATCH_NOTES](action);
-//}
 
 function handleErrors(response) {
     if (!response.ok) {
@@ -74,14 +62,20 @@ export const fetchToAddNote = async (dispatch, { title, body }) => {
     syncNotesWithDatabase(dispatch);
 }
 
-export const fetchToUpdateNote = (dispatch, { title, body }) => {
-    // TODO
-    const action = {
-        type: UPDATE_NOTE,
-        payload: {
-        },
-    };
-    dispatch[DISPATCH_NOTES](action);
+export const updateNote = (dispatch, { id, title, body }) => {
+    const noteUrl = API_URL[TASK_BASE] + `/${id}`;
+    console.log(noteUrl);
+    axios.patch(noteUrl, { title, body })
+        .then( () => syncNotesWithDatabase(dispatch))
+        .catch(data => console.log(data));
+}
+
+export const deleteNote = (dispatch, id) => {
+    const noteUrl = API_URL[TASK_BASE] + `/${id}`;
+    console.log(noteUrl);
+    axios.delete(noteUrl)
+        .then( () => syncNotesWithDatabase(dispatch))
+        .catch(data => console.log(data));
 }
 
 export const addLabel = (dispatch, { l_name }) => {
@@ -98,7 +92,7 @@ export const deleteLabel = (dispatch, id) => {
     const labelUrl = API_URL[LABEL_BASE] + `/${id}`;
     console.log(labelUrl);
     axios.delete(labelUrl)
-        .then( () => syncLabelsWithDatabase(dispatch))
+        .then( () => syncWithDatabase(dispatch))
         .catch(data => console.log(data));
 }
 
@@ -109,7 +103,6 @@ export const updateLabel = (dispatch, { id, l_name }) => {
         .then(() => syncWithDatabase(dispatch))
         .catch(data => console.log(data));
 }
-
 
 //const isResponseOk = (response)
 
