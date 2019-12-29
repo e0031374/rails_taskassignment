@@ -129,6 +129,7 @@ const NoteForm = (props) => {
                                         key={tag.id}
                                         label={tag}
                                         onClick={() => setFilterKey(tag)}
+                                        taskId={id}
                                     />
                                 </div>
                             )}

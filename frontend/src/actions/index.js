@@ -122,9 +122,9 @@ export const addLabelToNote = (dispatch, { task_id, label_id }) => {
 }
 
 export const removeLabelFromNote = (dispatch, { task_id, label_id }) => {
-    const taskLabelUrl = API_URL[TASKLABEL_BASE];// + `/${task_id}`;
+    const taskLabelUrl = API_URL[TASKLABEL_BASE] + `/${task_id}` + `/${label_id}`;
     console.log(taskLabelUrl);
-    axios.post(taskLabelUrl, { task_id, label_id })
+    axios.delete(taskLabelUrl)
         .then(() => syncNotesWithDatabase(dispatch))
         .catch(data => console.log(data));
 }

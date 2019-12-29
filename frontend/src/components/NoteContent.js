@@ -105,7 +105,11 @@ const NoteContent = (props) => {
                     className={styles.labelContainer}
                     key={tag.id}
                 >
-                    <LabelChip label={tag} setFilterKey={setFilterKey}/>
+                    <LabelChip 
+                        label={tag} 
+                        setFilterKey={setFilterKey}
+                        taskId={id}
+                    />
                 </div>
                 )}
                 {etcTag}

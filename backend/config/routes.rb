@@ -14,7 +14,7 @@ Rails.application.routes.draw do
                 end
             end
             resources :tasklabels do
-#            resources :tasklabels, path: 'tasklabels' do
+    # https://stackoverflow.com/questions/20383936/how-to-add-extra-parameter-to-resources-in-routes
                 collection do
                     delete ':task_id/:label_id', action: :destroy_relation
                 end
