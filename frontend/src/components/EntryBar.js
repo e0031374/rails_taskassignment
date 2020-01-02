@@ -51,6 +51,7 @@ const useStyles = makeStyles(theme => ({
 
 const EntryBar = ({ icon:Icon, placeholder}) => {
     const classes = useStyles();
+
     return (
     <div className={styles.container}>
         <div className={classes.search}>

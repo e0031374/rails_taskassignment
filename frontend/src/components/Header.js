@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Header = ({handleDrawerOpen, handleRefresh, open }) => {
+const Header = ({handleDrawerOpen, handleRefresh, onHandleSearch, open }) => {
 
     const classes = useStyles();
     return (
@@ -71,7 +71,7 @@ const Header = ({handleDrawerOpen, handleRefresh, open }) => {
                 <Typography variant="h6" noWrap>
                     Header
                 </Typography>
-                <SearchNoteBar/>
+                <SearchNoteBar onHandleSearch={onHandleSearch} />
                 <IconButton
                     color="inherit"
                     aria-label="refresh"

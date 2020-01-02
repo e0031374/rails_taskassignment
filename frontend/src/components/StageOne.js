@@ -161,6 +161,16 @@ const deleteNote = (prevState, id) => {
     return newNotes;
 }
 
+const setSearchPred = (searchKey) => (obj) => {
+    console.log(searchKey);
+    // default no searchterm
+    if (searchKey.length <= 0) return true;
+    // searches in both title and body of the ToDo
+    const fullObjContent = `${obj.title} ${obj.body}`;
+    const lowerCaseSearchKey = searchKey.toLowerCase();
+    return fullObjContent.toLowerCase().includes(lowerCaseSearchKey);
+}
+
 const StageOne = (props) => {
     // for CSS stuff
     const classes = useStyles();
@@ -183,6 +193,10 @@ const StageOne = (props) => {
     const [filterKey, setFilterKey] = React.useState("");
     const filterPred = setFilterPred(filterKey);
 
+    // local state for filtering by search
+    const [searchKey, setSearchKey] = React.useState("");
+    const searchPred = setSearchPred(searchKey);
+
     // state management for Drawer component (where the labels are at)
     const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => { setOpen(true); };
@@ -204,6 +218,7 @@ const StageOne = (props) => {
                 className={classes.header}
                 handleDrawerOpen={handleDrawerOpen}
                 handleRefresh={handleRefresh}
+                onHandleSearch={setSearchKey}
                 open={open}
             />
             <DispatchContext.Provider value={DISPATCH}>
@@ -212,7 +227,7 @@ const StageOne = (props) => {
                     className={classes.mainLayout}
                     handleDrawerClose={handleDrawerClose}
                     labels={labels}
-                    notes={notes.filter(filterPred)}
+                    notes={notes.filter(filterPred).filter(searchPred)}
                     open={open}
                     setFilterKey={setFilterKey}
                 />
