@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {BASE_COLOUR} from '../static/colorConstants';
+import {BASE_COLOUR} from '../constants';
 import styles from '../static/css/CentralLayout.module.css';
 
 import NoteLayout from './NoteLayout';

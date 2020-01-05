@@ -12,7 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
 import styles from '../static/css/MainLayout.module.css';
-import {TRIM_COLOUR} from '../static/colorConstants.js';
+import {TRIM_COLOUR} from '../constants.js';
 
 import CentralLayout from './CentralLayout';
 import LabelDrawer from './LabelDrawer';
@@ -69,7 +69,7 @@ const Header = ({handleDrawerOpen, handleRefresh, onHandleSearch, open }) => {
                     <MenuIcon/>
                 </IconButton>
                 <Typography variant="h6" noWrap>
-                    Header
+                    BootlegNotes 
                 </Typography>
                 <SearchNoteBar onHandleSearch={onHandleSearch} />
                 <IconButton

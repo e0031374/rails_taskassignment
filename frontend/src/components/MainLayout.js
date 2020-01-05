@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
 import styles from '../static/css/MainLayout.module.css';
-import {BASE_COLOUR} from '../static/colorConstants';
+import {BASE_COLOUR} from '../constants';
 
 import CentralLayout from './CentralLayout';
 import LabelDrawer from './LabelDrawer';

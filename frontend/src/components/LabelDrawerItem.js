@@ -7,7 +7,7 @@ import {
     Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { HIGHLIGHT_COLOUR } from '../static/colorConstants.js';
+import { HIGHLIGHT_COLOUR } from '../constants.js';
 
 const useStyles = makeStyles({
     listitem: {

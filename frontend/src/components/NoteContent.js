@@ -90,7 +90,11 @@ const NoteContent = (props) => {
             <CardContent className={classes.content}>
                 <CardActionArea className={classes.actionArea} onClick={onClick}>
                     <div className={styles.titleBar}>
-                        <Typography className={classes.title} variant="h6" color="textSecondary">
+                        <Typography 
+                            className={classes.title} 
+                            color="textSecondary"
+                            variant="subtitle2" 
+                        >
                             {title}
                         </Typography>
                     </div>
@@ -144,7 +148,3 @@ const NoteContent = (props) => {
 }
 
 export default NoteContent;
-
-                  // <IconButton className={classes.bin} aria-lael="label" size="small">
-                  //     <LabelIcon />
-                  // </IconButton>

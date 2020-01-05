@@ -12,7 +12,7 @@ import LightBulbIcon from '@material-ui/icons/EmojiObjects';
 import ChevronLeftIcon from '@material-ui/icons/MenuOpen';
 
 import styles from '../static/css/NoteContent.module.css';
-import { TRIM_COLOUR, HIGHLIGHT_COLOUR } from '../static/colorConstants';
+import { TRIM_COLOUR, HIGHLIGHT_COLOUR } from '../constants';
 import LabelDrawerItem from './LabelDrawerItem.js';
 import EditLabelContainer from './EditLabelContainer.js';
 //import { 
