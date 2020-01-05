@@ -1,10 +1,10 @@
-//const hostname = window.location.hostname === "localhost" 
-//    ? window.location.hostname + ":3001"
-//    : "api." + window.location.hostname; 
-//const ROOT_API = window.location.protocol + "//" + hostname;
+const hostname = window.location.hostname === "localhost" 
+    ? window.location.hostname + ":3001"
+    : "api." + window.location.hostname; 
+const ROOT_API = window.location.protocol + "//" + hostname;
 
 // dev only, we falling back on the proxy
-const ROOT_API = "";
+//const ROOT_API = "";
 
 export const API_URL = {
     TASK_BASE: `${ROOT_API}/api/v1/tasks`,
