@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const MainLayout = ({ open, notes, setFilterKey, ...rest}) => {
+const MainLayout = ({ error, open, notes, setFilterKey, ...rest}) => {
     const classes = useStyles();
     return (
         <div className={styles.all} style={backgroundColorStyle}>
@@ -62,6 +62,7 @@ const MainLayout = ({ open, notes, setFilterKey, ...rest}) => {
                 })}
             >
                 <CentralLayout 
+                    error={error}
                     notes={notes}
                     setFilterKey={setFilterKey}
                 />

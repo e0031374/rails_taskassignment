@@ -11,6 +11,9 @@ export const DELETE_TAG = "DELETE_TAG";
 export const UPDATE_TAG = "UPDATE_TAG";
 export const SYNC_TAG = "SYNC_TAG";
 
+export const SET_ERROR = "SET_ERROR";
+
 // dispatch Types
 export const DISPATCH_LABELS = "DISPATCH_LABELS";
 export const DISPATCH_NOTES = "DISPATCH_NOTES";
+export const DISPATCH_ERROR = "DISPATCH_ERROR";

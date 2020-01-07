@@ -10,6 +10,8 @@ import Header from './Header';
 import counter from '../reducer/index.js';
 import { syncWithDatabase } from '../actions/index.js';
 
+import { DISPATCH_LABELS, DISPATCH_NOTES, DISPATCH_ERROR } from '../actions/type.js'
+
 const useStyles = makeStyles(theme => ({
     container: {
         backgroundColor: BASE_COLOUR,
@@ -175,6 +177,9 @@ const StageOne = (props) => {
     // for CSS stuff
     const classes = useStyles();
 
+    // state connect to server?
+    const [error, setError] = React.useState(false);
+
     // state, source of truth across whole app
     //const [labels, setLabel] = React.useState(labelList);
     //const [notes, setNotes] = React.useState(noteList);
@@ -184,9 +189,11 @@ const StageOne = (props) => {
     // makes REST API calls, should set new state for the above
     const dispatchNotes = setDispatch(notes, setNotes);
     const dispatchLabels = setDispatch(labels, setLabel);
+    const dispatchError = setDispatch(error, setError);
     const DISPATCH = { 
-        DISPATCH_LABELS: dispatchLabels,
-        DISPATCH_NOTES: dispatchNotes,
+        [DISPATCH_LABELS]: dispatchLabels,
+        [DISPATCH_NOTES]: dispatchNotes,
+        [DISPATCH_ERROR]: dispatchError,
     }
 
     // local state for filtering by labels
@@ -226,6 +233,7 @@ const StageOne = (props) => {
                 <MainLayout 
                     className={classes.mainLayout}
                     handleDrawerClose={handleDrawerClose}
+                    error={error}
                     labels={labels}
                     notes={notes.filter(filterPred).filter(searchPred)}
                     open={open}

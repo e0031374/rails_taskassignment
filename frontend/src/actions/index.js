@@ -9,7 +9,9 @@ import {
     SYNC_TAG,
     DISPATCH_LABELS,
     DISPATCH_NOTES,
-} from '../utils/type.js';
+    SET_ERROR,
+    DISPATCH_ERROR,
+} from './type.js';
 
 import { 
     API_URL, 
@@ -146,7 +148,21 @@ export const syncNotesWithDatabase = (dispatch) => {
                 payload: response.data,
             };
             dispatch[DISPATCH_NOTES](action)
-        }).catch( error => console.log(error))
+        }).then( response => {
+            const action = {
+                type: SET_ERROR,
+                msg: response,
+                payload: false, // set false to not display connection error message
+            };
+            dispatch[DISPATCH_ERROR](action)
+        }).catch(e => {
+            const action = {
+                type: SET_ERROR,
+                msg: e,
+                payload: true, // set true to display connection error message
+            };
+            dispatch[DISPATCH_ERROR](action)
+        }); //.catch( error => console.log(error))
 }
 
 
@@ -161,7 +177,21 @@ export const syncLabelsWithDatabase = (dispatch) => {
                 payload: response.data,
             };
             dispatch[DISPATCH_LABELS](action)
-        }).catch(error => console.log(error));
+        }).then(response => {
+            const action = {
+                type: SET_ERROR,
+                msg: response,
+                payload: false, // set false to not display connection error message
+            };
+            dispatch[DISPATCH_ERROR](action)
+        }).catch(e => {
+            const action = {
+                type: SET_ERROR,
+                msg: e,
+                payload: true, // set true to display connection error message
+            };
+            dispatch[DISPATCH_ERROR](action)
+        });//.catch(error => console.log(error));
 }
 
 export const syncWithDatabase = (dispatch) => {

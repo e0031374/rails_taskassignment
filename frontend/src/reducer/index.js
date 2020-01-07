@@ -6,7 +6,8 @@ import {
     DISPATCH_NOTES,
     DISPATCH_LABELS,
     SYNC_TAG,
- } from '../utils/type.js'
+    SET_ERROR,
+ } from '../actions/type.js'
 
 
 // normally this would be the combine reducer in redux
@@ -31,6 +32,8 @@ export default function (prevState, action) {
             //});
         case SYNC_TAG:
             return action.payload; //action.payload.map(label => label.l_name);
+        case SET_ERROR: 
+            return action.payload;
         default:
             return prevState;
     }
