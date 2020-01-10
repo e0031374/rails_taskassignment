@@ -9,6 +9,6 @@ COPY ./ ./
 #CMD ["rails", "s", "-p", "3001"]
 RUN ["chmod", "+x", "bin/entry"]
 ENTRYPOINT ["bin/entry"]
-CMD ["puma", "-C", "-"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3001"]
 
 

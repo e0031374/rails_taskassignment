@@ -34,10 +34,11 @@ module Taskmaster
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # https://dev.to/aidiri/the-name-s-cors-rack-cors-27og
     config.middleware.insert_before 0, Rack::Cors do
         allow do
-            origins '*'
-            resource '*', headers: :any, methods: [:get, :post, :options]
+            origins '*' #, 'localhost:3000'
+            resource '*', headers: :any, methods: :any #[:get, :post, :options]
         end
     end
     

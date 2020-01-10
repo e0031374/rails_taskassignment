@@ -1,14 +1,10 @@
-// hardcoded since rails can only be accessed outside of container
-// by running on puma or 0.0.0.0
-const port = "9292";    // "3001";
+const port = "3001";    // "9292";
 const hostname = window.location.hostname === "localhost" 
     ? window.location.hostname + ":" + port
     : "api." + window.location.hostname; 
 const ROOT_API = window.location.protocol + "//" + hostname;
 
-// dev only, we falling back on the proxy
-// for Docker
-//const ROOT_API = "rails-server";
+//const ROOT_API = "rails-server" + ":" + port;
 
 export const API_URL = {
     TASK_BASE: `${ROOT_API}/api/v1/tasks`,

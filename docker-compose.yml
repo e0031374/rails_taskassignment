@@ -12,7 +12,8 @@ services:
     depends_on:
       - db
     ports:
-      - "9292:9292"
+      - "3001:3001"
+      #- "9292:9292"
   react-server:
     build: ./frontend
     ports:
