@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    build: ./db
+    #image: postgres
+    #volumes:
+    #  - ./tmp/db:/var/lib/postgresql/data
+  rails-server:
+    build: ./backend
+    #volumes:
+    #  - .:/backend
+    depends_on:
+      - db
+    ports:
+      - "9292:9292"
+  react-server:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rails-server

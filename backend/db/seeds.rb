@@ -11,6 +11,17 @@ end
     })
 end
 
+for i in 1..5 do
+    k_limit = rand(0..3)
+    if k_limit > 0
+        for k in 1..k_limit do
+            TaskLabel.create({
+                task_id: i,
+                label_id: k,
+            })
+        end
+    end
+end
 
 
 # This file should contain all the record creation needed to seed the database with its default values.

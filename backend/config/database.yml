@@ -6,22 +6,24 @@
 #
 default: &default
   adapter: postgresql #sqlite3
-  #username: owo
-  #password: 
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  encoding: unicode
+  host: db
+  username: docker 
+  password: 
+  pool: 5 #<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  #timeout: 5000
 
 development:
   <<: *default
-  database: taskmaster  #db/development.sqlite3
+  database: docker #myapp_development #db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: taskmaster #db/test.sqlite3
+  database: docker #myapp_test #db/test.sqlite3
 
 production:
   <<: *default
-  database: taskmaster  #db/production.sqlite3
+  database: docker #myapp_production  #db/production.sqlite3

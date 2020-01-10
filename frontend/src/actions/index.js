@@ -168,6 +168,8 @@ export const syncNotesWithDatabase = (dispatch) => {
 
 export const syncLabelsWithDatabase = (dispatch) => {
     const labelUrl = API_URL[LABEL_BASE];
+    console.log("labelurl");
+    console.log(labelUrl);
     fetch(labelUrl)
         .then(handleErrors)
         .then(response => response.json())
