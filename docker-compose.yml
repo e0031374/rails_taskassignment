@@ -3,8 +3,8 @@ services:
   db:
     build: ./db
     #image: postgres
-    #volumes:
-    #  - ./tmp/db:/var/lib/postgresql/data
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
   rails-server:
     build: ./backend
     #volumes:
