@@ -17,7 +17,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import LabelIcon from '@material-ui/icons/Label';
 import AddLabelItem from './AddLabelItem.js';
-import { LabelContext } from '../utils/context.js'
+import { LabelContext } from '../../utils/context.js'
 
 const useStyles = makeStyles({
     form: {

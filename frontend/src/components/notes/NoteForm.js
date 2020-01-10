@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../static/css/NoteForm.module.css';
 import { 
     Button,
     Dialog,
@@ -11,8 +10,9 @@ import {
     TextField,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-//import { DISPATCH_NOTES} from '../utils/type.js';
-import { DispatchContext } from '../utils/context.js'
+//import { DISPATCH_NOTES} from '../../utils/type.js';
+import { DispatchContext } from '../../utils/context.js'
+import styles from '../../static/css/NoteForm.module.css';
 
 import LabelChip from './LabelChip';
 

@@ -6,7 +6,7 @@ import { BASE_COLOUR }  from '../constants.js';
 import { DispatchContext, LabelContext } from '../utils/context.js'
 
 import MainLayout from './MainLayout';
-import Header from './Header';
+import Header from './header/Header';
 import counter from '../reducer/index.js';
 import { syncWithDatabase } from '../actions/index.js';
 

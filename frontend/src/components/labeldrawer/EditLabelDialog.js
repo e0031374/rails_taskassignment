@@ -1,5 +1,5 @@
 import React from 'react';
-//import styles from '../static/css/NoteContent.module.css';
+
 import { 
     Button,
     Dialog,
@@ -11,6 +11,7 @@ import {
     Typography
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
 import CreateLabelItem from './CreateLabelItem.js';
 import EditLabelItem from './EditLabelItem.js';
 

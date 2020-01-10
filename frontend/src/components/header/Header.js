@@ -11,11 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
-import styles from '../static/css/MainLayout.module.css';
-import {TRIM_COLOUR} from '../constants.js';
+import styles from '../../static/css/MainLayout.module.css';
+import {TRIM_COLOUR} from '../../constants.js';
 
-import CentralLayout from './CentralLayout';
-import LabelDrawer from './LabelDrawer';
 import SearchNoteBar from './SearchNoteBar';
 
 

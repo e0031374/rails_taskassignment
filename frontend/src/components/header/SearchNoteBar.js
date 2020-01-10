@@ -8,9 +8,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import _ from 'lodash';
 
-import styles from '../static/css/SearchNoteBar.module.css';
-
-import EntryBar from './EntryBar';
+import styles from '../../static/css/SearchNoteBar.module.css';
 
 const useStyles = makeStyles(theme => ({
     search: {

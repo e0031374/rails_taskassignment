@@ -11,15 +11,9 @@ import LabelIcon from '@material-ui/icons/Label';
 import LightBulbIcon from '@material-ui/icons/EmojiObjects';
 import ChevronLeftIcon from '@material-ui/icons/MenuOpen';
 
-import styles from '../static/css/NoteContent.module.css';
-import { TRIM_COLOUR, HIGHLIGHT_COLOUR } from '../constants';
+import { TRIM_COLOUR, HIGHLIGHT_COLOUR } from '../../constants';
 import LabelDrawerItem from './LabelDrawerItem.js';
 import EditLabelContainer from './EditLabelContainer.js';
-//import { 
-//    Label:LabelIcon, 
-//    EmojiObjects:LightBulbIcon, 
-//    MenuOpen:ChevronLeftIcon,
-//} from '@material-ui/icons';
 
 const drawerWidth = 240;
 

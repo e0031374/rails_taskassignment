@@ -1,25 +1,14 @@
 import React from 'react';
-import styles from '../static/css/TakeNoteBarOuter.module.css';
 import { 
     InputBase,
 } from '@material-ui/core';
+
 import TakeNoteBar from './TakeNoteBar.js';
-import NoteForm from './NoteForm';
-import { addNote } from '../actions/index.js';
+import NoteForm from '../notes/NoteForm';
+import { addNote } from '../../actions/index.js';
 
-//import useNoteFormWrapper from './useNoteFormWrapper';
+import styles from '../../static/css/TakeNoteBarOuter.module.css';
 
-//const TakeNoteBarOuter = useNoteFormWrapper(TakeNoteBar);
-
-//const TakeNoteBarOuter = (props) => {
-//    return (
-//        <div className={styles.container}>
-//            <div className={styles.subContainer}>
-//                <TakeNoteBar/>
-//            </div>
-//        </div>
-//    );
-//}
 const TakeNoteBarOuter  = (props) => {
 
     const [open, setOpen] = React.useState(false);

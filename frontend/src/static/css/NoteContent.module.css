@@ -4,18 +4,9 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .labelContainer {
     padding: 1px;
-}
-.iconContainer {
-    flex: 1;
-}
-
-.card {
-    min-width: 275;
-    max-width: 300;
-    padding: 5;
-
 }
 
 .titleBar {

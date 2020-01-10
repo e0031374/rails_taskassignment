@@ -1,12 +1,8 @@
 import React from 'react';
 
 import NoteContent from './NoteContent';
-import useNoteFormWrapper from './useNoteFormWrapper';
 import NoteForm from './NoteForm';
-import { updateNote } from '../actions/index.js';
-
-//const WholeNote = (props) => useNoteFormWrapper(NoteContent);
-
+import { updateNote } from '../../actions/index.js';
 
 const WholeNote = (props) => {
     const {noteContent, setFilterKey} = props;

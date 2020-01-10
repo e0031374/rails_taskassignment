@@ -1,7 +1,7 @@
 import React from 'react';
 import { Chip } from '@material-ui/core';
-import { removeLabelFromNote } from '../actions/index.js';
-import { DispatchContext } from '../utils/context.js'
+import { removeLabelFromNote } from '../../actions/index.js';
+import { DispatchContext } from '../../utils/context.js'
 
 const LabelChip = (props) => {
     const {label, setFilterKey, taskId} = props;

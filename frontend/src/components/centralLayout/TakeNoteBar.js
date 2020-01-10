@@ -3,7 +3,7 @@ import { ButtonBase } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { NoteAdd } from '@material-ui/icons';
 
-import styles from '../static/css/TakeNoteBar.module.css';
+import styles from '../../static/css/TakeNoteBar.module.css';
 
 import EntryBar from './EntryBar';
 

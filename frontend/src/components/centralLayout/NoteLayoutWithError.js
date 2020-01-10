@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NoteLayout from './NoteLayout';
-import '../static/css/NoteLayoutWithError.css';
+import '../../static/css/NoteLayoutWithError.css';
 
 const ErrorMessage = (props) =>
     <div className="container" >

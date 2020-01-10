@@ -13,8 +13,9 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import LabelIcon from '@material-ui/icons/Label';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { addLabelToNote } from '../actions/index.js';
-import { DispatchContext } from '../utils/context.js'
+
+import { addLabelToNote } from '../../actions/index.js';
+import { DispatchContext } from '../../utils/context.js'
 
 const useStyles = makeStyles({
     bin: {

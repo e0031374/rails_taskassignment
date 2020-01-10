@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {BASE_COLOUR} from '../constants';
-import styles from '../static/css/CentralLayout.module.css';
+import { BASE_COLOUR } from '../../constants';
+import styles from '../../static/css/CentralLayout.module.css';
 
 import NoteLayout from './NoteLayout';
 import NoteLayoutWithError from './NoteLayoutWithError';
@@ -17,7 +17,6 @@ const CentralLayout = (props) => {
         </div>
     );
 }
-            //<NoteLayout {...props} />
 
 const backgroundColorStyle = {
     backgroundColor: BASE_COLOUR,

@@ -1,10 +1,11 @@
 import React from 'react';
-import styles from '../static/css/EntryBar.module.css';
 import { 
     InputBase,
 } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { NoteAdd } from '@material-ui/icons';
+
+import styles from '../../static/css/EntryBar.module.css';
 
 const useStyles = makeStyles(theme => ({
     search: {

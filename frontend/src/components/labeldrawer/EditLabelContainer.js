@@ -1,5 +1,4 @@
 import React from 'react';
-//import styles from '../static/css/NoteContent.module.css';
 import { 
     Button,
     ListItem,
@@ -9,6 +8,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import LabelIcon from '@material-ui/icons/Label';
 import EditIcon from '@material-ui/icons/Edit';
+
 import EditLabelDialog from './EditLabelDialog.js';
 
 const EditLabelContainer = ({labels}) => {

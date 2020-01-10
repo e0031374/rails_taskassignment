@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
 import styles from '../static/css/MainLayout.module.css';
-import {BASE_COLOUR} from '../constants';
+import { BASE_COLOUR } from '../constants';
 
-import CentralLayout from './CentralLayout';
-import LabelDrawer from './LabelDrawer';
+import CentralLayout from './centralLayout/CentralLayout';
+import LabelDrawer from './labeldrawer/LabelDrawer';
 
 const drawerWidth = 240;
 

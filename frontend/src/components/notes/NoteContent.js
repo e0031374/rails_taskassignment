@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../static/css/NoteContent.module.css';
+
 import { 
     Card, 
     CardActions, 
@@ -13,13 +13,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import LabelIcon from '@material-ui/icons/Label';
-import { deleteNote } from '../actions/index.js';
 
+import { deleteNote } from '../../actions/index.js';
 import AddLabelToNoteDialog from './AddLabelToNoteDialog.js';
-import { DispatchContext } from '../utils/context.js'
-
+import { DispatchContext } from '../../utils/context.js'
 import LabelChip from './LabelChip';
 
+import styles from '../../static/css/NoteContent.module.css';
 
 const useStyles = makeStyles({
     actionArea: {

@@ -1,5 +1,5 @@
 import React from 'react';
-//import styles from '../static/css/NoteContent.module.css';
+
 import { 
     Button,
     IconButton,
@@ -11,9 +11,10 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import LabelIcon from '@material-ui/icons/Label';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { deleteLabel, updateLabel } from '../actions/index.js';
-import { DispatchContext, LabelContext } from '../utils/context.js'
-import { isDuplicateLabel } from '../utils/index.js'
+
+import { deleteLabel, updateLabel } from '../../actions/index.js';
+import { DispatchContext, LabelContext } from '../../utils/context.js'
+import { isDuplicateLabel } from '../../utils/index.js'
 
 const useStyles = makeStyles({
     bin: {
