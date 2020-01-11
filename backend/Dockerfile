@@ -9,6 +9,7 @@ COPY ./ ./
 #CMD ["rails", "s", "-p", "3001"]
 RUN ["chmod", "+x", "bin/entry"]
 ENTRYPOINT ["bin/entry"]
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3001"]
+#CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3001"]
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 
 

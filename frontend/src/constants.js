@@ -1,8 +1,11 @@
-const port = "3001";    // "9292";
-const hostname = window.location.hostname === "localhost" 
-    ? window.location.hostname + ":" + port
-    : "api." + window.location.hostname; 
-const ROOT_API = window.location.protocol + "//" + hostname;
+//const port = "3001";    // "9292";
+//const hostname = window.location.hostname === "localhost" 
+//    ? window.location.hostname + ":" + port
+//    : "api." + window.location.hostname; 
+//const ROOT_API = window.location.protocol + "//" + hostname;
+
+// for Heroku deploy
+const ROOT_API = "https://cvwo-assignment--backend.herokuapp.com";
 
 //const ROOT_API = "rails-server" + ":" + port;
 

@@ -7,23 +7,23 @@
 default: &default
   adapter: postgresql #sqlite3
   encoding: unicode
-  host: db
-  username: docker 
+  host: #XX-XX.compute-1.amazonaws.com #db
+  username: #docker Deployment username
   password: 
-  pool: 5 #<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   #timeout: 5000
 
 development:
   <<: *default
-  database: docker #myapp_development #db/development.sqlite3
+  database: #docker #db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: docker #myapp_test #db/test.sqlite3
+  database: #docker #db/test.sqlite3
 
 production:
   <<: *default
-  database: docker #myapp_production  #db/production.sqlite3
+  database: #docker #db/production.sqlite3
