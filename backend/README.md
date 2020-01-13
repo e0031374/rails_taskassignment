@@ -1,5 +1,17 @@
 # README
 
+
+REMINDER:
+to deploy onto heroku, ensure /tmp/pids exist, you need to make it manually
+it is in the gitignore here
+
+
+
+
+
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
