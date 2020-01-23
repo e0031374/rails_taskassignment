@@ -1,13 +1,13 @@
-5.times do
+8.times do
     Task.create({
         title: Faker::Books::Lovecraft.tome,
         body: Faker::Books::Lovecraft.sentence
     })
 end
 
-3.times do
+for i in 1..5 do
     Label.create({
-        l_name: Faker::Books::Lovecraft.location
+        l_name: Faker::Books::Lovecraft.location + i.to_s
     })
 end
 

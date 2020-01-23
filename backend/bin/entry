@@ -2,6 +2,6 @@
 set -e
 
 rails db:migrate
-#rails db:seed
+rails db:seed
 
 exec "$@"
