@@ -20,3 +20,12 @@ NOTE: for the subsequent time (any time after the first time) you can try going 
 This seeds the database with dummy data, but on subsequent times, comment the line again to prevent conflicting entries in the database
 
 
+To inspect the database container
+1. `sudo docker ps` to get the container id
+2. `sudo docker exec -it <container id> sh` to connect to container
+3. `psql -U docker` to access the postgres, note: i believe username was defined in the rails migration of the backend
+4. `\l` to view all databases
+5. `\c docker` to connect to the database with name: docker (also specified in rails db config)
+NOTE: when in doubt of changes not applying use: `docker-compose up --build` to rebuild new containers
+
+
